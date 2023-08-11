@@ -9,7 +9,6 @@ Each role has different permissions, allowing us to apply the [principle of leas
 We log into AWS using Azure AD and single sign-on.
 This includes getting AWS CLI credentials.
 
-[AWS Organisation]: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html
 [privilege]: https://en.wikipedia.org/wiki/Principle_of_least_privilege
 
 
