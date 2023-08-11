@@ -1,15 +1,11 @@
 # Parent Platform account
 
 module "aws_account" {
-  source = "../modules/account/aws"
+  source = "../../modules/account_roles"
 
   max_session_duration = "4 hrs"
 
   prefix = "platform"
-
-  principals = [
-    local.account_principals["platform"],
-  ]
 
   infra_bucket_arn = "arn:aws:s3:::wellcomecollection-platform-infra"
 }

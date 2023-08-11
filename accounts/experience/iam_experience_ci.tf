@@ -1,3 +1,10 @@
+data "aws_caller_identity" "current" {}
+
+locals {
+  aws_region = "eu-west-1"
+  account_id = data.aws_caller_identity.current.account_id
+}
+
 resource "aws_iam_role_policy" "experience_ci" {
   role   = module.experience_account.ci_role.name
   policy = data.aws_iam_policy_document.experience_ci_combined.json
@@ -44,7 +51,7 @@ data "aws_iam_policy_document" "experience_ci" {
     ]
 
     resources = [
-      "arn:aws:secretsmanager:${local.aws_region}:${local.account_ids["experience"]}:secret:builds/*",
+      "arn:aws:secretsmanager:${local.aws_region}:${local.account_id}:secret:builds/*",
     ]
   }
 
@@ -56,7 +63,7 @@ data "aws_iam_policy_document" "experience_ci" {
     ]
 
     resources = [
-      "arn:aws:secretsmanager:${local.aws_region}:${local.account_ids["experience"]}:secret:catalogue_api/items/*",
+      "arn:aws:secretsmanager:${local.aws_region}:${local.account_id}:secret:catalogue_api/items/*",
     ]
   }
 
@@ -68,7 +75,7 @@ data "aws_iam_policy_document" "experience_ci" {
     ]
 
     resources = [
-      "arn:aws:cloudfront::${local.account_ids["experience"]}:distribution/EIOS79GG23UUY",
+      "arn:aws:cloudfront::${local.account_id}:distribution/EIOS79GG23UUY",
     ]
   }
 }

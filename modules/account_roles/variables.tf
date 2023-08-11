@@ -1,7 +1,5 @@
-variable "prefix" {}
-
-variable "principals" {
-  type = list(string)
+variable "prefix" {
+  type = string
 }
 
 variable "max_session_duration" {

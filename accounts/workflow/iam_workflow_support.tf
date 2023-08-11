@@ -1,7 +1,16 @@
 # Workflow support role
 
+locals {
+  account_ids = {
+    platform = "760097843905"
+    workflow = "299497370133"
+  }
+
+  account_principals = { for key, value in local.account_ids : key => "arn:aws:iam::${value}:root" }
+}
+
 module "workflow_support_role" {
-  source = "../modules/assumable_role/aws"
+  source = "../../modules/assumable_role"
 
   name = "workflow-support"
 

@@ -1,5 +1,11 @@
+data "aws_caller_identity" "current" {}
+
+locals {
+  account_id = data.aws_caller_identity.current.account_id
+}
+
 resource "aws_iam_role_policy" "identity_ci" {
-  role   = module.identity_account.ci_role_name
+  role   = module.identity_account.ci_role.name
   policy = data.aws_iam_policy_document.identity_ci.json
 }
 
@@ -24,7 +30,7 @@ data "aws_iam_policy_document" "identity_ci" {
     ]
 
     resources = [
-      "arn:aws:lambda:eu-west-1:${local.account_ids.identity}:function:*"
+      "arn:aws:lambda:eu-west-1:${local.account_id}:function:*"
     ]
   }
 
@@ -87,7 +93,7 @@ data "aws_iam_policy_document" "identity_ci" {
       "cloudfront:CreateInvalidation"
     ]
     resources = [
-      "arn:aws:cloudfront::${local.account_ids.identity}:distribution/*",
+      "arn:aws:cloudfront::${local.account_id}:distribution/*",
     ]
   }
 
@@ -118,7 +124,7 @@ data "aws_iam_policy_document" "identity_ci" {
     ]
 
     resources = [
-      "arn:aws:iam::${local.account_ids.identity}:role/identity-ci",
+      "arn:aws:iam::${local.account_id}:role/identity-ci",
     ]
   }
 }

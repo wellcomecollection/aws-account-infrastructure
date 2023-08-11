@@ -1,10 +1,5 @@
 module "digitisation_account" {
-  source = "../modules/account/aws"
+  source = "../../modules/account_roles"
 
   prefix = "digitisation"
-
-  principals = [
-    local.account_principals["platform"],
-    local.account_principals["digitisation"],
-  ]
 }

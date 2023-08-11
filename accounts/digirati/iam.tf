@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "dds_assume_role" {
 
     principals {
       type        = "AWS"
-      identifiers = [local.dds_principal_arn]
+      identifiers = ["AIDAIMIDFG3P7VG5TT4WK"]
     }
   }
 }

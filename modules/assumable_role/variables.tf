@@ -21,5 +21,5 @@ variable "max_session_duration" {
 
 locals {
   max_session_duration_in_hours = parseint(replace(var.max_session_duration, "/ hrs?/", ""), 10)
-  max_session_duration = 60 * 60 * local.max_session_duration_in_hours
+  max_session_duration          = 60 * 60 * local.max_session_duration_in_hours
 }
