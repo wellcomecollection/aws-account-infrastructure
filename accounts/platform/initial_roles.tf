@@ -1,5 +1,10 @@
-module "super_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.super_dev_roleset
+  to   = module.super_dev_initial_role
+}
+
+module "super_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "platform-superdev"
 
@@ -100,8 +105,13 @@ module "super_dev_roleset" {
   ]
 }
 
-module "dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.dev_roleset
+  to   = module.platform_dev_initial_role
+}
+
+module "platform_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "platform-dev"
 
@@ -162,8 +172,13 @@ module "dev_roleset" {
   ]
 }
 
-module "storage_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.storage_dev_roleset
+  to   = module.storage_dev_initial_role
+}
+
+module "storage_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "storage-dev"
 
@@ -191,8 +206,13 @@ module "storage_dev_roleset" {
   ]
 }
 
-module "workflow_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.workflow_dev_roleset
+  to   = module.workflow_dev_initial_role
+}
+
+module "workflow_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "workflow-dev"
 
@@ -209,8 +229,13 @@ module "workflow_dev_roleset" {
   ]
 }
 
-module "data_analyst_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.data_analyst_roleset
+  to   = module.data_analyst_initial_role
+}
+
+module "data_analyst_initial_role" {
+  source = "../modules/initial_role"
 
   name = "data-analyst"
 
@@ -228,8 +253,13 @@ module "data_analyst_roleset" {
   ]
 }
 
-module "data_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.data_dev_roleset
+  to   = module.data_dev_initial_role
+}
+
+module "data_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "data-dev"
 
@@ -270,8 +300,13 @@ module "data_dev_roleset" {
   ]
 }
 
-module "digitisation_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digitisation_dev_roleset
+  to   = module.digitisation_dev_initial_role
+}
+
+module "digitisation_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digitisation-dev"
 
@@ -298,8 +333,13 @@ module "digitisation_dev_roleset" {
   ]
 }
 
-module "digitisation_admin_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digitisation_admin_roleset
+  to   = module.digitisation_admin_initial_role
+}
+
+module "digitisation_admin_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digitisation-admin"
 
@@ -327,8 +367,13 @@ module "digitisation_admin_roleset" {
   ]
 }
 
-module "digirati_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digirati_dev_roleset
+  to   = module.digirati_dev_initial_role
+}
+
+module "digirati_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digirati-dev"
 
