@@ -30,19 +30,19 @@ This is a list of our standard roles:
     </td>
   </tr>
   <tr>
-    <td>ci</td>
-    <td>identity-ci</td>
-    <td>
-      Provides the permissions that CI needs to do things in this account (e.g. publishing Docker images to ECR).
-      Usually used by CI instances only.
-    </td>
-  </tr>
-  <tr>
     <td>read_only</td>
     <td>digitisation-read_only</td>
     <td>
       Provides read-only access to most of the account.
       This doesn't include access to secrets in Secrets Manager.
+    </td>
+  </tr>
+  <tr>
+    <td>ci</td>
+    <td>identity-ci</td>
+    <td>
+      Provides the permissions that CI needs to do things in this account (e.g. publishing Docker images to ECR).
+      Usually used by CI instances only.
     </td>
   </tr>
 </table>
