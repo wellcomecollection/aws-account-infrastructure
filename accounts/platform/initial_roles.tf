@@ -9,7 +9,7 @@ moved {
 }
 
 module "super_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "platform-superdev"
 
@@ -116,7 +116,7 @@ moved {
 }
 
 module "platform_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "platform-dev"
 
@@ -183,7 +183,7 @@ moved {
 }
 
 module "storage_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "storage-dev"
 
@@ -217,7 +217,7 @@ moved {
 }
 
 module "workflow_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "workflow-dev"
 
@@ -240,7 +240,7 @@ moved {
 }
 
 module "data_analyst_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "data-analyst"
 
@@ -264,7 +264,7 @@ moved {
 }
 
 module "data_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "data-dev"
 
@@ -311,7 +311,7 @@ moved {
 }
 
 module "digitisation_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "digitisation-dev"
 
@@ -344,7 +344,7 @@ moved {
 }
 
 module "digitisation_admin_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "digitisation-admin"
 
@@ -378,7 +378,7 @@ moved {
 }
 
 module "digirati_dev_initial_role" {
-  source = "../modules/initial_role"
+  source = "../../modules/initial_role"
 
   name = "digirati-dev"
 
