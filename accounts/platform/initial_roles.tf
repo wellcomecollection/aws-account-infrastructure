@@ -1,3 +1,8 @@
+# This defines the initial IAM roles that users assume when they
+# log into our AWS estate.
+#
+# See https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-is-an-initial-role#which-initial-role-do-you-use
+
 moved {
   from = module.super_dev_roleset
   to   = module.super_dev_initial_role
