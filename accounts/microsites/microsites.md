@@ -1,4 +1,4 @@
-# Notes on the microsites account
+# microsites
 
 The microsites account is an old AWS account that was run by a contractor we no longer use.
 These sites included quiz.wellcomecollection.org and chorus.wellcomecollection.org.

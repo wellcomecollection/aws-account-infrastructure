@@ -1,3 +1,6 @@
+# Note: we run prod/staging VPCs for the identity account to isolate
+# resources that interact with personally identifiable information (PII).
+
 module "identity_vpc_prod" {
   source = "../../modules/vpc"
 
