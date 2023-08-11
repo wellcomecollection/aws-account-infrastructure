@@ -11,8 +11,8 @@ flowchart LR
     classDef externalNode fill:#e8e8e8,stroke:#8f8f8f
     class L,SR,DS externalNode
 
-    classDef repoNode fill:#ffebad,stroke:#ffce3c,stroke-width:2px
-    class IR repoNode
+    classDef initialRole fill:#ffebad,stroke:#ffce3c,stroke-width:2px
+    class IR initialRole
 ```
 
 This initial role can't do anything except assume a more specific IAM role.
