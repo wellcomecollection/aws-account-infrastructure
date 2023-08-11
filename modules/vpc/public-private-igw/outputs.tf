@@ -14,10 +14,10 @@ output "private_route_table_id" {
   value = module.private_subnets.route_table_id
 }
 
-output "vpc_id" {
-  value = aws_vpc.vpc.id
+output "vpc" {
+  value = aws_vpc.vpc
 }
 
-output "nat_elastic_ip" {
-  value = module.nat.elastic_ip
+output "nat" {
+  value = module.nat
 }
