@@ -38,25 +38,7 @@ import sys
 import boto3
 import termcolor
 
-
-wellcome_account_names = {
-    "299497370133": "workflow",
-    "404315009621": "digitisation",
-    "760097843905": "platform",
-    "756629837203": "catalogue",
-    "964279923020": "data",
-    "653428163053": "digirati",
-    "130871440101": "experience",
-    "770700576653": "identity",
-    "269807742353": "reporting",
-    "975596993436": "storage",
-    "782179017633": "microsites",
-    "269807742353": "reporting",
-    "975596993436": "storage",
-    "299497370133": "workflow",
-    "782179017633": "microsites",
-    "487094370410": "systems_strategy",
-}
+from config import WELLCOME_ACCOUNT_NAMES
 
 
 def get_aws_session(*, role_arn):
@@ -109,7 +91,7 @@ if __name__ == "__main__":
     ]
 
     try:
-        account_name = wellcome_account_names[account_id]
+        account_name = WELLCOME_ACCOUNT_NAMES[account_id]
     except KeyError:
         pprint_info(key="access key", value=access_key_id)
         pprint_info(key="account", value=f"{account_id} (unknown)")
