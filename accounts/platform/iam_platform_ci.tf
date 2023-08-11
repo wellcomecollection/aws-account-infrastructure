@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "platform_ci" {
-  role   = module.aws_account.ci_role_name
+  role   = module.aws_account.ci_role.name
   policy = data.aws_iam_policy_document.platform_ci.json
 }
 
