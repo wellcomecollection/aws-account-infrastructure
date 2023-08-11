@@ -1,10 +1,10 @@
 # Admin role
 
 module "admin_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-admin"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }
@@ -17,10 +17,10 @@ module "admin_role_policy" {
 # Developer role
 
 module "developer_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-developer"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }
@@ -33,10 +33,10 @@ module "developer_role_policy" {
 # Monitoring role
 
 module "monitoring_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-monitoring"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }
@@ -49,10 +49,10 @@ module "monitoring_role_policy" {
 # Read/only role
 
 module "read_only_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-read_only"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }
@@ -65,10 +65,10 @@ module "read_only_role_policy" {
 # Publisher role
 
 module "publisher_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-publisher"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }
@@ -81,10 +81,10 @@ module "publisher_role_policy" {
 # CI role
 
 module "ci_role" {
-  source = "../../assumable_role/aws"
+  source = "../../../../modules/assumable_role"
   name   = "${var.prefix}-ci"
 
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+  max_session_duration = var.max_session_duration
 
   principals = var.principals
 }

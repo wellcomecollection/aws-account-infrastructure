@@ -4,9 +4,9 @@ variable "principals" {
   type = list(string)
 }
 
-variable "max_session_duration_in_seconds" {
-  # Default is one hour
-  default = "3600"
+variable "max_session_duration" {
+  type    = string
+  default = "1 hr"
 }
 
 variable "infra_bucket_arn" {
