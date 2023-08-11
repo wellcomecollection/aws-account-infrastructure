@@ -2,7 +2,7 @@
 # - iiif-builder
 
 module "digirati_vpc" {
-  source = "../modules/vpc"
+  source = "../../modules/vpc"
 
   vpc_name   = "iiif-services"
   cidr_block = "172.56.0.0/16"
@@ -12,7 +12,7 @@ module "digirati_vpc" {
 # - London's Pulse: Medical Officer of Health reports
 
 module "moh_vpc" {
-  source = "../modules/vpc"
+  source = "../../modules/vpc"
 
   vpc_name   = "moh"
   cidr_block = "172.57.0.0/16"

@@ -35,4 +35,13 @@
   <dd>
     Defines the IAM role policies for our standard IAM roles.
   </dd>
+
+  <dt>
+    <a href="https://github.com/wellcomecollection/aws-account-infrastructure/tree/main/modules/vpc">
+      <code>vpc</code>
+    </a>
+  </dt>
+  <dd>
+    Creates a VPC with our standard networking config.
+  </dd>
 </dl>
