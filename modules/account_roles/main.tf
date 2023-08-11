@@ -30,22 +30,6 @@ module "developer_role_policy" {
   role_name = module.developer_role.name
 }
 
-# Monitoring role
-
-module "monitoring_role" {
-  source = "../assumable_role"
-  name   = "${var.prefix}-monitoring"
-
-  max_session_duration = var.max_session_duration
-
-  principals = local.principals
-}
-
-module "monitoring_role_policy" {
-  source    = "../role_policies/monitoring"
-  role_name = module.monitoring_role.name
-}
-
 # Read/only role
 
 module "read_only_role" {
@@ -60,22 +44,6 @@ module "read_only_role" {
 module "read_only_role_policy" {
   source    = "../role_policies/read_only"
   role_name = module.read_only_role.name
-}
-
-# Publisher role
-
-module "publisher_role" {
-  source = "../assumable_role"
-  name   = "${var.prefix}-publisher"
-
-  max_session_duration = var.max_session_duration
-
-  principals = local.principals
-}
-
-module "publisher_role_policy" {
-  source    = "../role_policies/publisher"
-  role_name = module.publisher_role.name
 }
 
 # CI role
