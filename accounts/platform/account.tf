@@ -7,10 +7,6 @@ module "aws_account" {
 
   prefix = "platform"
 
-  principals = [
-    local.account_principals["platform"],
-  ]
-
   infra_bucket_arn = "arn:aws:s3:::wellcomecollection-platform-infra"
 }
 

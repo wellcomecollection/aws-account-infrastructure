@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "client_transfer_read_write" {
       type = "AWS"
 
       identifiers = [
-        module.digitisation_account.developer_role_arn,
+        module.digitisation_account.developer_role.arn,
       ]
     }
   }

@@ -6,7 +6,7 @@ module "admin_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "admin_role_policy" {
@@ -22,7 +22,7 @@ module "developer_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "developer_role_policy" {
@@ -38,7 +38,7 @@ module "monitoring_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "monitoring_role_policy" {
@@ -54,7 +54,7 @@ module "read_only_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "read_only_role_policy" {
@@ -70,7 +70,7 @@ module "publisher_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "publisher_role_policy" {
@@ -86,7 +86,7 @@ module "ci_role" {
 
   max_session_duration = var.max_session_duration
 
-  principals = var.principals
+  principals = local.principals
 }
 
 module "ci_role_policy" {

@@ -1,7 +1,7 @@
 # Workflow support role
 
 module "workflow_support_role" {
-  source = "../modules/assumable_role/aws"
+  source = "../../modules/assumable_role"
 
   name = "workflow-support"
 
