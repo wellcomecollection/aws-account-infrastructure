@@ -26,4 +26,13 @@
   <dd>
     Creates the IAM roles that users assume when they first log into our AWS estate.
   </dd>
+
+  <dt>
+    <a href="https://github.com/wellcomecollection/aws-account-infrastructure/tree/main/modules/role_policies">
+      <code>role_policies</code>
+    </a>
+  </dt>
+  <dd>
+    Defines the IAM role policies for our standard IAM roles.
+  </dd>
 </dl>

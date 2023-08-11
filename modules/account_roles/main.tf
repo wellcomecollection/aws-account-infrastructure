@@ -110,13 +110,13 @@ module "ci_role_policy" {
 # than in the D&T-supplied roles; see individual roles for details.
 
 module "cloudhealth" {
-  source = "../roles/cloudhealth"
+  source = "./cloudhealth"
 }
 
 module "qualys" {
-  source = "../roles/qualys"
+  source = "./qualys"
 }
 
 module "threataware" {
-  source = "../roles/threataware"
+  source = "./threataware"
 }
