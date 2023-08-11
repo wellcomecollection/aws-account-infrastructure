@@ -1,5 +1,5 @@
 module "catalogue_account" {
-  source = "../modules/account/aws"
+  source = "../../modules/account_roles"
 
   prefix = "catalogue"
 

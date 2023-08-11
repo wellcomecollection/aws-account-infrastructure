@@ -1,5 +1,5 @@
 module "experience_account" {
-  source = "../modules/account/aws"
+  source = "../../modules/account_roles"
 
   prefix = "experience"
 

@@ -1,7 +1,7 @@
 # Parent Platform account
 
 module "aws_account" {
-  source = "../modules/account/aws"
+  source = "../../modules/account_roles"
 
   max_session_duration = "4 hrs"
 
