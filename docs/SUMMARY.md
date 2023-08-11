@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Introduction](README.md)
+* [AWS account setup](README.md)
 
 ## Users, IAM roles, accounts, and so on
 
