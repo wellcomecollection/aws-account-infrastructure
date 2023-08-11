@@ -21,7 +21,6 @@ This is an IAM role, where [IAM][iam] is the AWS service for managing permission
 This role can't do anything except assume other roles.
 
 **3. The user assumes a more specific role, which has permission to do whatever they need to do.**
-
 There are lots of these roles, each of which has fairly specific permissions.
 There are different roles for different accounts (e.g. storage, dlcs, workflow) and for different permission levels within each account (e.g. read-only, admin).
 
