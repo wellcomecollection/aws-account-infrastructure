@@ -11,9 +11,9 @@ module "super_dev_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.admin_role_arn,
-    module.aws_account.developer_role_arn,
-    module.aws_account.read_only_role_arn,
+    module.aws_account.admin_role.arn,
+    module.aws_account.developer_role.arn,
+    module.aws_account.read_only_role.arn,
 
     # Identity
     local.identity_account_roles["admin_role_arn"],
@@ -79,8 +79,8 @@ module "super_dev_roleset" {
 
     # CI Roles
     local.ci_agent_role_arn,
-    module.aws_account.publisher_role_arn,
-    module.aws_account.ci_role_arn,
+    module.aws_account.publisher_role.arn,
+    module.aws_account.ci_role.arn,
     local.catalogue_account_roles["ci_role_arn"],
     local.data_account_roles["ci_role_arn"],
     local.digirati_account_roles["ci_role_arn"],
@@ -110,8 +110,8 @@ module "dev_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.developer_role_arn,
-    module.aws_account.read_only_role_arn,
+    module.aws_account.developer_role.arn,
+    module.aws_account.read_only_role.arn,
 
     # Digirati
     local.digirati_account_roles["developer_role_arn"],
@@ -149,8 +149,8 @@ module "dev_roleset" {
     aws_iam_role.s3_scala_releases_read.arn,
 
     # CI Roles
-    module.aws_account.publisher_role_arn,
-    module.aws_account.ci_role_arn,
+    module.aws_account.publisher_role.arn,
+    module.aws_account.ci_role.arn,
     local.catalogue_account_roles["ci_role_arn"],
     local.data_account_roles["ci_role_arn"],
     local.digirati_account_roles["ci_role_arn"],
@@ -172,7 +172,7 @@ module "storage_dev_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.read_only_role_arn,
+    module.aws_account.read_only_role.arn,
 
     # Workflow
     local.workflow_account_roles["developer_role_arn"],
@@ -218,7 +218,7 @@ module "data_analyst_roleset" {
   aws_principal       = local.aws_principal
 
   assumable_role_arns = [
-    module.aws_account.read_only_role_arn,
+    module.aws_account.read_only_role.arn,
     local.experience_account_roles["read_only_role_arn"],
     local.workflow_account_roles["read_only_role_arn"],
 
@@ -240,10 +240,10 @@ module "data_dev_roleset" {
     # Platform
     # Currently the admin role is needed as we have a lot of
     # infra in the platform account that should be in the catalogue account
-    module.aws_account.admin_role_arn,
-    module.aws_account.developer_role_arn,
-    module.aws_account.read_only_role_arn,
-    module.aws_account.ci_role_arn,
+    module.aws_account.admin_role.arn,
+    module.aws_account.developer_role.arn,
+    module.aws_account.read_only_role.arn,
+    module.aws_account.ci_role.arn,
 
     # Data
     local.data_account_roles["admin_role_arn"],
@@ -280,7 +280,7 @@ module "digitisation_dev_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.read_only_role_arn,
+    module.aws_account.read_only_role.arn,
 
     # Digitisation
     local.digitisation_account_roles["developer_role_arn"],
@@ -308,7 +308,7 @@ module "digitisation_admin_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.read_only_role_arn,
+    module.aws_account.read_only_role.arn,
 
     # Digitisation
     local.digitisation_account_roles["admin_role_arn"],
@@ -337,7 +337,7 @@ module "digirati_dev_roleset" {
 
   assumable_role_arns = [
     # Platform
-    module.aws_account.read_only_role_arn,
+    module.aws_account.read_only_role.arn,
 
     # Digirati
     local.digirati_account_roles["admin_role_arn"],

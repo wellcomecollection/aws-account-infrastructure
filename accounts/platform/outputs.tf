@@ -42,7 +42,7 @@ output "platform_read_only_role_arn" {
 
 output "ci_role_arn" {
   value = {
-    platform : module.aws_account.ci_role_arn,
+    platform     = module.aws_account.ci_role.arn,
     catalogue    = local.catalogue_account_roles["ci_role_arn"]
     data         = local.data_account_roles["ci_role_arn"]
     digirati     = local.digirati_account_roles["ci_role_arn"]
