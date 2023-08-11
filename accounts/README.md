@@ -173,22 +173,6 @@ For example, `workflow-developer` has the account name `workflow` and the role s
       This doesn't include access to secrets in Secrets Manager.
     </td>
   </tr>
-  <tr>
-    <td>monitoring</td>
-    <td>storage-monitoring</td>
-    <td>
-      Provides read-only access to some information about billing and ECS.
-      (TODO: Do we still use/need this role?)
-    </td>
-  </tr>
-  <tr>
-    <td>publisher</td>
-    <td>catalogue-publisher</td>
-    <td>
-      Allows publishing images into ECR.
-      (TODO: Do we still use/need this role?)
-    </td>
-  </tr>
 </table>
 
 You can see the IAM policy definitions for each of these roles in `modules/role_policies`.

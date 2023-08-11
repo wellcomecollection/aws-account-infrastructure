@@ -45,20 +45,4 @@ This is a list of our standard roles:
       This doesn't include access to secrets in Secrets Manager.
     </td>
   </tr>
-  <tr>
-    <td>monitoring</td>
-    <td>storage-monitoring</td>
-    <td>
-      Provides read-only access to some information about billing and ECS.
-      (TODO: Do we still use/need this role?)
-    </td>
-  </tr>
-  <tr>
-    <td>publisher</td>
-    <td>catalogue-publisher</td>
-    <td>
-      Allows publishing images into ECR.
-      (TODO: Do we still use/need this role?)
-    </td>
-  </tr>
 </table>

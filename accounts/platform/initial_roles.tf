@@ -88,7 +88,6 @@ module "super_dev_initial_role" {
 
     # CI Roles
     local.ci_agent_role_arn,
-    module.aws_account.publisher_role.arn,
     module.aws_account.ci_role.arn,
     local.catalogue_account_roles["ci_role_arn"],
     local.data_account_roles["ci_role_arn"],
@@ -163,7 +162,6 @@ module "platform_dev_initial_role" {
     aws_iam_role.s3_scala_releases_read.arn,
 
     # CI Roles
-    module.aws_account.publisher_role.arn,
     module.aws_account.ci_role.arn,
     local.catalogue_account_roles["ci_role_arn"],
     local.data_account_roles["ci_role_arn"],
