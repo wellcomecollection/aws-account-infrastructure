@@ -1,5 +1,10 @@
-module "super_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.super_dev_roleset
+  to   = module.super_dev_initial_role
+}
+
+module "super_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "platform-superdev"
 
@@ -9,7 +14,7 @@ module "super_dev_roleset" {
   # 4 hours
   max_session_duration_in_seconds = 4 * 60 * 60
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.admin_role.arn,
     module.aws_account.developer_role.arn,
@@ -100,15 +105,20 @@ module "super_dev_roleset" {
   ]
 }
 
-module "dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.dev_roleset
+  to   = module.platform_dev_initial_role
+}
+
+module "platform_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "platform-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.developer_role.arn,
     module.aws_account.read_only_role.arn,
@@ -162,15 +172,20 @@ module "dev_roleset" {
   ]
 }
 
-module "storage_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.storage_dev_roleset
+  to   = module.storage_dev_initial_role
+}
+
+module "storage_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "storage-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -191,15 +206,20 @@ module "storage_dev_roleset" {
   ]
 }
 
-module "workflow_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.workflow_dev_roleset
+  to   = module.workflow_dev_initial_role
+}
+
+module "workflow_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "workflow-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Workflow
     local.workflow_account_roles["admin_role_arn"],
     local.workflow_account_roles["developer_role_arn"],
@@ -209,15 +229,20 @@ module "workflow_dev_roleset" {
   ]
 }
 
-module "data_analyst_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.data_analyst_roleset
+  to   = module.data_analyst_initial_role
+}
+
+module "data_analyst_initial_role" {
+  source = "../modules/initial_role"
 
   name = "data-analyst"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     module.aws_account.read_only_role.arn,
     local.experience_account_roles["read_only_role_arn"],
     local.workflow_account_roles["read_only_role_arn"],
@@ -228,15 +253,20 @@ module "data_analyst_roleset" {
   ]
 }
 
-module "data_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.data_dev_roleset
+  to   = module.data_dev_initial_role
+}
+
+module "data_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "data-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     # Currently the admin role is needed as we have a lot of
     # infra in the platform account that should be in the catalogue account
@@ -270,15 +300,20 @@ module "data_dev_roleset" {
   ]
 }
 
-module "digitisation_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digitisation_dev_roleset
+  to   = module.digitisation_dev_initial_role
+}
+
+module "digitisation_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digitisation-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -298,15 +333,20 @@ module "digitisation_dev_roleset" {
   ]
 }
 
-module "digitisation_admin_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digitisation_admin_roleset
+  to   = module.digitisation_admin_initial_role
+}
+
+module "digitisation_admin_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digitisation-admin"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -327,15 +367,20 @@ module "digitisation_admin_roleset" {
   ]
 }
 
-module "digirati_dev_roleset" {
-  source = "../modules/roleset"
+moved {
+  from = module.digirati_dev_roleset
+  to   = module.digirati_dev_initial_role
+}
+
+module "digirati_dev_initial_role" {
+  source = "../modules/initial_role"
 
   name = "digirati-dev"
 
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
