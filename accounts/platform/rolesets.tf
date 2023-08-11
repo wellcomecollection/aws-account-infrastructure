@@ -9,7 +9,7 @@ module "super_dev_roleset" {
   # 4 hours
   max_session_duration_in_seconds = 4 * 60 * 60
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.admin_role.arn,
     module.aws_account.developer_role.arn,
@@ -108,7 +108,7 @@ module "dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.developer_role.arn,
     module.aws_account.read_only_role.arn,
@@ -170,7 +170,7 @@ module "storage_dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -199,7 +199,7 @@ module "workflow_dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Workflow
     local.workflow_account_roles["admin_role_arn"],
     local.workflow_account_roles["developer_role_arn"],
@@ -217,7 +217,7 @@ module "data_analyst_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     module.aws_account.read_only_role.arn,
     local.experience_account_roles["read_only_role_arn"],
     local.workflow_account_roles["read_only_role_arn"],
@@ -236,7 +236,7 @@ module "data_dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     # Currently the admin role is needed as we have a lot of
     # infra in the platform account that should be in the catalogue account
@@ -278,7 +278,7 @@ module "digitisation_dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -306,7 +306,7 @@ module "digitisation_admin_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 
@@ -335,7 +335,7 @@ module "digirati_dev_roleset" {
   federated_principal = module.account_federation.principal
   aws_principal       = local.aws_principal
 
-  assumable_role_arns = [
+  assumable_roles = [
     # Platform
     module.aws_account.read_only_role.arn,
 

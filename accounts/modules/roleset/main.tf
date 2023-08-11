@@ -1,14 +1,64 @@
-module "role" {
-  source                          = "../assumable_role/federated"
-  name                            = var.name
-  federated_principal             = var.federated_principal
-  aws_principal                   = var.aws_principal
-  max_session_duration_in_seconds = var.max_session_duration_in_seconds
+resource "aws_iam_role" "role" {
+  name               = var.name
+  assume_role_policy = data.aws_iam_policy_document.assume_role_with_saml.json
+
+  max_session_duration = var.max_session_duration_in_seconds
 }
 
-module "role_policy" {
-  source    = "../role_policies/assume_role"
-  role_name = module.role.name
+data "aws_iam_policy_document" "assume_role_with_saml" {
+  statement {
+    effect = "Allow"
 
-  assumable_roles = var.assumable_role_arns
+    principals {
+      type        = "Federated"
+      identifiers = [var.federated_principal]
+    }
+
+    actions = ["sts:AssumeRoleWithSAML"]
+
+    condition {
+      test     = "StringEquals"
+      values   = ["https://signin.aws.amazon.com/saml"]
+      variable = "SAML:aud"
+    }
+  }
+
+  # This statement allows you to "double hop" between assumed roles
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "AWS"
+      identifiers = [var.aws_principal]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+moved {
+  from = module.role.aws_iam_role.role
+  to   = aws_iam_role.role
+}
+
+resource "aws_iam_role_policy" "allow_assume_roles" {
+  role   = aws_iam_role.role.name
+  policy = data.aws_iam_policy_document.allow_assume_all_assumable_roles.json
+}
+
+data "aws_iam_policy_document" "allow_assume_all_assumable_roles" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "sts:AssumeRole",
+    ]
+
+    resources = var.assumable_roles
+  }
+}
+
+moved {
+  from = module.role_policy.aws_iam_role_policy.role_assumer
+  to   = aws_iam_role_policy.allow_assume_roles
 }
