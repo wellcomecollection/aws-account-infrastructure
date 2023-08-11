@@ -11,7 +11,7 @@ module "aws_account" {
 }
 
 module "account_federation" {
-  source = "../modules/account/federated"
+  source = "./federated"
 
   saml_xml = data.aws_s3_object.account_federation_saml.body
   pgp_key  = file("${path.module}/wellcomedigitalplatform.pub")
