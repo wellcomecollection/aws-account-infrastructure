@@ -12,11 +12,9 @@ module "vpc" {
 
   cidr_block_vpc = var.cidr_block
 
-  public_az_count           = 3
   cidr_block_public         = local.cidr_block_public
   cidrsubnet_newbits_public = 2
 
-  private_az_count           = 3
   cidr_block_private         = local.cidr_block_private
   cidrsubnet_newbits_private = 2
 }

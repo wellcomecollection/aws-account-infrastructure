@@ -3,26 +3,40 @@ data "aws_availability_zones" "zones" {}
 locals {
   availability = var.map_public_ips_on_launch ? "public" : "private"
 
-  az_count = length(data.aws_availability_zones.zones.names)
   az_names = data.aws_availability_zones.zones.names
-
-  subnet_count = var.az_count == "" ? local.az_count : var.az_count
 }
 
 resource "aws_subnet" "subnet" {
-  count = local.subnet_count
+  # Subnets cannot span multiple availability zones, so we need to create
+  # at least one subnet in each AZ.
+  for_each          = toset(local.az_names)
+  availability_zone = each.key
 
-  cidr_block = cidrsubnet(var.cidr_block, var.cidrsubnet_newbits, count.index)
+  cidr_block = cidrsubnet(var.cidr_block, var.cidrsubnet_newbits, index(local.az_names, each.key))
 
-  availability_zone = local.az_names[(count.index % (local.az_count + 1))]
-  vpc_id            = var.vpc_id
+  vpc_id = var.vpc_id
 
   map_public_ip_on_launch = var.map_public_ips_on_launch
 
   tags = {
-    Name         = "${var.name}-${local.az_names[(count.index % (local.az_count + 1))]}-${count.index}"
+    Name         = "${var.name}-${each.key}-${index(local.az_names, each.key)}"
     Availability = local.availability
   }
+}
+
+moved {
+  from = aws_subnet.subnet[0]
+  to   = aws_subnet.subnet["eu-west-1a"]
+}
+
+moved {
+  from = aws_subnet.subnet[1]
+  to   = aws_subnet.subnet["eu-west-1b"]
+}
+
+moved {
+  from = aws_subnet.subnet[2]
+  to   = aws_subnet.subnet["eu-west-1c"]
 }
 
 resource "aws_route_table" "table" {
@@ -34,7 +48,23 @@ resource "aws_route_table" "table" {
 }
 
 resource "aws_route_table_association" "network" {
-  count          = local.subnet_count
-  subnet_id      = element(aws_subnet.subnet.*.id, count.index)
+  for_each = aws_subnet.subnet
+
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.table.id
+}
+
+moved {
+  from = aws_route_table_association.network[0]
+  to   = aws_route_table_association.network["eu-west-1a"]
+}
+
+moved {
+  from = aws_route_table_association.network[1]
+  to   = aws_route_table_association.network["eu-west-1b"]
+}
+
+moved {
+  from = aws_route_table_association.network[2]
+  to   = aws_route_table_association.network["eu-west-1c"]
 }

@@ -17,8 +17,6 @@ module "public_subnets" {
 
   cidr_block         = var.cidr_block_public
   cidrsubnet_newbits = var.cidrsubnet_newbits_public
-
-  az_count = var.public_az_count
 }
 
 module "private_subnets" {
@@ -29,8 +27,6 @@ module "private_subnets" {
 
   cidr_block         = var.cidr_block_private
   cidrsubnet_newbits = var.cidrsubnet_newbits_private
-
-  az_count = var.private_az_count
 }
 
 module "nat" {
