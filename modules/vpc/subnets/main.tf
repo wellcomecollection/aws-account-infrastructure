@@ -24,21 +24,6 @@ resource "aws_subnet" "subnet" {
   }
 }
 
-moved {
-  from = aws_subnet.subnet[0]
-  to   = aws_subnet.subnet["eu-west-1a"]
-}
-
-moved {
-  from = aws_subnet.subnet[1]
-  to   = aws_subnet.subnet["eu-west-1b"]
-}
-
-moved {
-  from = aws_subnet.subnet[2]
-  to   = aws_subnet.subnet["eu-west-1c"]
-}
-
 resource "aws_route_table" "table" {
   vpc_id = var.vpc_id
 
@@ -52,19 +37,4 @@ resource "aws_route_table_association" "network" {
 
   subnet_id      = each.value.id
   route_table_id = aws_route_table.table.id
-}
-
-moved {
-  from = aws_route_table_association.network[0]
-  to   = aws_route_table_association.network["eu-west-1a"]
-}
-
-moved {
-  from = aws_route_table_association.network[1]
-  to   = aws_route_table_association.network["eu-west-1b"]
-}
-
-moved {
-  from = aws_route_table_association.network[2]
-  to   = aws_route_table_association.network["eu-west-1c"]
 }
