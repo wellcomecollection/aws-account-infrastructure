@@ -1,5 +1,11 @@
-variable "name" {}
-variable "route_table_id" {}
+variable "name" {
+  type = string
+}
+
+variable "route_table_id" {
+  type = string
+}
+
 variable "subnet_id" {
   type = string
 }
