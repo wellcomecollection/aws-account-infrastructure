@@ -6,8 +6,7 @@ module "subnets" {
 
   map_public_ips_on_launch = "true"
 
-  cidr_block         = var.cidr_block
-  cidrsubnet_newbits = var.cidrsubnet_newbits
+  cidr_block = var.cidr_block
 }
 
 resource "aws_route" "route" {

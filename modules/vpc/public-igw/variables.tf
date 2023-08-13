@@ -1,4 +1,14 @@
-variable "name" {}
-variable "vpc_id" {}
-variable "cidr_block" {}
-variable "cidrsubnet_newbits" {}
+variable "name" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "cidr_block" {
+  type = object({
+    prefix  = string
+    newbits = number
+  })
+}

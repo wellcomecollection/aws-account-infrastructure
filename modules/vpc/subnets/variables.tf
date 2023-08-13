@@ -1,7 +1,16 @@
-variable "vpc_id" {}
-variable "name" {}
-variable "cidr_block" {}
-variable "cidrsubnet_newbits" {}
+variable "vpc_id" {
+  type = string
+}
+variable "name" {
+  type = string
+}
+
+variable "cidr_block" {
+  type = object({
+    prefix  = string
+    newbits = number
+  })
+}
 
 variable "map_public_ips_on_launch" {
   default = false

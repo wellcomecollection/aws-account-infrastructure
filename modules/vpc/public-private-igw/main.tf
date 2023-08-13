@@ -15,8 +15,7 @@ module "public_subnets" {
 
   vpc_id = aws_vpc.vpc.id
 
-  cidr_block         = var.cidr_block_public
-  cidrsubnet_newbits = var.cidrsubnet_newbits_public
+  cidr_block = var.cidr_block_public
 }
 
 module "private_subnets" {
@@ -25,8 +24,7 @@ module "private_subnets" {
 
   vpc_id = aws_vpc.vpc.id
 
-  cidr_block         = var.cidr_block_private
-  cidrsubnet_newbits = var.cidrsubnet_newbits_private
+  cidr_block = var.cidr_block_private
 }
 
 module "nat" {

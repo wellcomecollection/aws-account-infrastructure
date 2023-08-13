@@ -12,7 +12,7 @@ resource "aws_subnet" "subnet" {
   for_each          = toset(local.az_names)
   availability_zone = each.key
 
-  cidr_block = cidrsubnet(var.cidr_block, var.cidrsubnet_newbits, index(local.az_names, each.key))
+  cidr_block = cidrsubnet(var.cidr_block.prefix, var.cidr_block.newbits, index(local.az_names, each.key))
 
   vpc_id = var.vpc_id
 
