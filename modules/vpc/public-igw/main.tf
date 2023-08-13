@@ -6,8 +6,6 @@ module "subnets" {
 
   map_public_ips_on_launch = "true"
 
-  az_count = var.az_count
-
   cidr_block         = var.cidr_block
   cidrsubnet_newbits = var.cidrsubnet_newbits
 }
