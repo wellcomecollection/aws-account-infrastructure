@@ -27,7 +27,7 @@ output "identity_prod_vpc_public_subnets" {
 }
 
 output "identity_prod_vpc_id" {
-  value = module.identity_vpc_prod.vpc_id
+  value = module.identity_vpc_prod.vpc.id
 }
 
 output "identity_stage_vpc_private_subnets" {
@@ -43,5 +43,5 @@ output "identity_stage_vpc_public_subnets" {
 }
 
 output "identity_stage_vpc_id" {
-  value = module.identity_vpc_stage.vpc_id
+  value = module.identity_vpc_stage.vpc.id
 }

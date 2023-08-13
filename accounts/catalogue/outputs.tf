@@ -23,7 +23,7 @@ output "catalogue_vpc_public_subnets" {
 }
 
 output "catalogue_vpc_id" {
-  value = module.catalogue_vpc.vpc_id
+  value = module.catalogue_vpc.vpc.id
 }
 
 output "catalogue_vpc_delta_private_subnets" {
@@ -35,5 +35,5 @@ output "catalogue_vpc_delta_public_subnets" {
 }
 
 output "catalogue_vpc_delta_id" {
-  value = module.catalogue_vpc_delta.vpc_id
+  value = module.catalogue_vpc_delta.vpc.id
 }

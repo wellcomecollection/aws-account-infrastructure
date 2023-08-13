@@ -23,5 +23,5 @@ output "experience_vpc_public_subnets" {
 }
 
 output "experience_vpc_id" {
-  value = module.experience_vpc.vpc_id
+  value = module.experience_vpc.vpc.id
 }
