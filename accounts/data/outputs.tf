@@ -23,5 +23,5 @@ output "datascience_vpc_public_subnets" {
 }
 
 output "datascience_vpc_id" {
-  value = module.datascience_vpc.vpc_id
+  value = module.datascience_vpc.vpc.id
 }

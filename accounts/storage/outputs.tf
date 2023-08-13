@@ -23,5 +23,5 @@ output "storage_vpc_public_subnets" {
 }
 
 output "storage_vpc_id" {
-  value = module.storage_vpc.vpc_id
+  value = module.storage_vpc.vpc.id
 }

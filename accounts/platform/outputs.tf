@@ -52,7 +52,7 @@ output "ci_vpc_private_subnets" {
 }
 
 output "ci_vpc_nat_elastic_ip" {
-  value = module.ci_vpc.nat_elastic_ip
+  value = module.ci_vpc.nat.elastic_ip
 }
 
 output "ci_vpc_public_subnets" {
@@ -60,7 +60,7 @@ output "ci_vpc_public_subnets" {
 }
 
 output "ci_vpc_id" {
-  value = module.ci_vpc.vpc_id
+  value = module.ci_vpc.vpc.id
 }
 
 output "developer_vpc_private_subnets" {
@@ -72,7 +72,7 @@ output "developer_vpc_public_subnets" {
 }
 
 output "developer_vpc_id" {
-  value = module.developer_vpc.vpc_id
+  value = module.developer_vpc.vpc.id
 }
 
 output "monitoring_vpc_delta_private_subnets" {
@@ -84,5 +84,5 @@ output "monitoring_vpc_delta_public_subnets" {
 }
 
 output "monitoring_vpc_delta_id" {
-  value = module.monitoring_vpc_delta.vpc_id
+  value = module.monitoring_vpc_delta.vpc.id
 }

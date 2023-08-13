@@ -27,7 +27,7 @@ output "digirati_vpc_public_subnets" {
 }
 
 output "digirati_vpc_id" {
-  value = module.digirati_vpc.vpc_id
+  value = module.digirati_vpc.vpc.id
 }
 
 output "moh_vpc_private_subnets" {
@@ -43,5 +43,5 @@ output "moh_vpc_public_subnets" {
 }
 
 output "moh_vpc_id" {
-  value = module.moh_vpc.vpc_id
+  value = module.moh_vpc.vpc.id
 }
