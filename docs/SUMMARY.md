@@ -5,6 +5,7 @@
 ## How to
 
 * [How to get credentials for working locally, e.g. the AWS CLI](how-to/how-to-get-credentials-for-working-locally.md)
+* [How to get credentials for staff who aren't developers](how-to/how-to-create-credentials-for-staff-who-arent-developers.md)
 
 ## Users, IAM roles, accounts, and so on
 
