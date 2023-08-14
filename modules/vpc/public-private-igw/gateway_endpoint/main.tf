@@ -1,6 +1,6 @@
 data "aws_vpc_endpoint_service" "service" {
   service      = var.service
-  service_type = var.service_type
+  service_type = "Gateway"
 }
 
 data "aws_vpc" "selected" {

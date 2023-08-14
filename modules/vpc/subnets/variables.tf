@@ -1,6 +1,7 @@
 variable "vpc_id" {
   type = string
 }
+
 variable "name" {
   type = string
 }
@@ -13,5 +14,6 @@ variable "cidr_block" {
 }
 
 variable "map_public_ips_on_launch" {
+  type    = bool
   default = false
 }

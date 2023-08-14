@@ -1,6 +1,10 @@
-variable "name" {}
+variable "name" {
+  type = string
+}
 
-variable "cidr_block_vpc" {}
+variable "cidr_block_vpc" {
+  type = string
+}
 
 variable "cidr_block_public" {
   type = object({
@@ -17,9 +21,11 @@ variable "cidr_block_private" {
 }
 
 variable "enable_dns_support" {
+  type    = bool
   default = true
 }
 
 variable "enable_dns_hostnames" {
+  type    = bool
   default = true
 }

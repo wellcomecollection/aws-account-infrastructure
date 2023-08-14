@@ -1,7 +1,11 @@
-variable "service" {}
-variable "vpc_id" {}
-variable "route_table_id" {}
-variable "service_type" {
-  type    = string
-  default = "Gateway"
+variable "service" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "route_table_id" {
+  type = string
 }

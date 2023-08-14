@@ -1,1 +1,3 @@
-variable "role_name" {}
+variable "role_name" {
+  type = string
+}
