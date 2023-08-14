@@ -2,6 +2,10 @@
 
 * [AWS account setup](README.md)
 
+## How to
+
+* [How to get credentials for working locally, e.g. the AWS CLI](how-to/how-to-get-credentials-for-working-locally.md)
+
 ## Users, IAM roles, accounts, and so on
 
 * [Introduction](users-iam-roles-accounts-and-so-on/how-we-do-iam.md)
