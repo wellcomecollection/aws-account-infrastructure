@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket         = "wellcomecollection-platform-infra"
-    key            = "terraform/platform-infrastructure/accounts/platform.tfstate"
+    key            = "terraform/aws-account-infrastructure/platform.tfstate"
     dynamodb_table = "terraform-locktable"
 
     role_arn = "arn:aws:iam::760097843905:role/platform-developer"
@@ -29,7 +29,7 @@ data "terraform_remote_state" "accounts_catalogue" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/catalogue.tfstate"
+    key    = "terraform/aws-account-infrastructure/catalogue.tfstate"
     region = "eu-west-1"
   }
 }
@@ -41,7 +41,7 @@ data "terraform_remote_state" "accounts_data" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/data.tfstate"
+    key    = "terraform/aws-account-infrastructure/data.tfstate"
     region = "eu-west-1"
   }
 }
@@ -53,7 +53,7 @@ data "terraform_remote_state" "accounts_digirati" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/digirati.tfstate"
+    key    = "terraform/aws-account-infrastructure/digirati.tfstate"
     region = "eu-west-1"
   }
 }
@@ -65,7 +65,7 @@ data "terraform_remote_state" "accounts_digitisation" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/digitisation.tfstate"
+    key    = "terraform/aws-account-infrastructure/digitisation.tfstate"
     region = "eu-west-1"
   }
 }
@@ -77,7 +77,7 @@ data "terraform_remote_state" "accounts_experience" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/experience.tfstate"
+    key    = "terraform/aws-account-infrastructure/experience.tfstate"
     region = "eu-west-1"
   }
 }
@@ -89,7 +89,7 @@ data "terraform_remote_state" "accounts_reporting" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/reporting.tfstate"
+    key    = "terraform/aws-account-infrastructure/reporting.tfstate"
     region = "eu-west-1"
   }
 }
@@ -101,7 +101,7 @@ data "terraform_remote_state" "accounts_storage" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/storage.tfstate"
+    key    = "terraform/aws-account-infrastructure/storage.tfstate"
     region = "eu-west-1"
   }
 }
@@ -113,7 +113,7 @@ data "terraform_remote_state" "accounts_workflow" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/workflow.tfstate"
+    key    = "terraform/aws-account-infrastructure/workflow.tfstate"
     region = "eu-west-1"
   }
 }
@@ -125,19 +125,7 @@ data "terraform_remote_state" "accounts_identity" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/identity.tfstate"
-    region = "eu-west-1"
-  }
-}
-
-data "terraform_remote_state" "accounts_dam_prototype" {
-  backend = "s3"
-
-  config = {
-    role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
-
-    bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/dam_prototype.tfstate"
+    key    = "terraform/aws-account-infrastructure/identity.tfstate"
     region = "eu-west-1"
   }
 }
@@ -149,7 +137,7 @@ data "terraform_remote_state" "accounts_microsites" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/microsites.tfstate"
+    key    = "terraform/aws-account-infrastructure/microsites.tfstate"
     region = "eu-west-1"
   }
 }
@@ -161,7 +149,7 @@ data "terraform_remote_state" "accounts_systems_strategy" {
     role_arn = "arn:aws:iam::760097843905:role/platform-read_only"
 
     bucket = "wellcomecollection-platform-infra"
-    key    = "terraform/platform-infrastructure/accounts/systems_strategy.tfstate"
+    key    = "terraform/aws-account-infrastructure/systems_strategy.tfstate"
     region = "eu-west-1"
   }
 }

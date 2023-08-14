@@ -1,6 +1,6 @@
 locals {
   default_tags = {
-    TerraformConfigurationURL = "https://github.com/wellcomecollection/platform-infrastructure/tree/main/accounts/platform"
+    TerraformConfigurationURL = "https://github.com/wellcomecollection/aws-account-infrastructure/tree/main/accounts/platform"
   }
 }
 
