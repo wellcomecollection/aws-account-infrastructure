@@ -55,3 +55,10 @@ docker run --tty --rm \
   --workdir /repo \
   760097843905.dkr.ecr.eu-west-1.amazonaws.com/wellcome/flake8:latest \
   --exclude .git,__pycache__,target,.terraform --ignore=E501,E122,E126,E203,W503
+
+docker run --rm --tty \
+  --volume $(pwd):/data \
+  ghcr.io/terraform-linters/tflint \
+    --recursive \
+    --disable-rule=terraform_required_version \
+    --disable-rule=terraform_required_providers
