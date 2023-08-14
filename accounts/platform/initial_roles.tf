@@ -3,11 +3,6 @@
 #
 # See https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-is-an-initial-role#which-initial-role-do-you-use
 
-moved {
-  from = module.super_dev_roleset
-  to   = module.super_dev_initial_role
-}
-
 module "super_dev_initial_role" {
   source = "../../modules/initial_role"
 
@@ -108,11 +103,6 @@ module "super_dev_initial_role" {
   ]
 }
 
-moved {
-  from = module.dev_roleset
-  to   = module.platform_dev_initial_role
-}
-
 module "platform_dev_initial_role" {
   source = "../../modules/initial_role"
 
@@ -174,11 +164,6 @@ module "platform_dev_initial_role" {
   ]
 }
 
-moved {
-  from = module.storage_dev_roleset
-  to   = module.storage_dev_initial_role
-}
-
 module "storage_dev_initial_role" {
   source = "../../modules/initial_role"
 
@@ -208,11 +193,6 @@ module "storage_dev_initial_role" {
   ]
 }
 
-moved {
-  from = module.workflow_dev_roleset
-  to   = module.workflow_dev_initial_role
-}
-
 module "workflow_dev_initial_role" {
   source = "../../modules/initial_role"
 
@@ -229,11 +209,6 @@ module "workflow_dev_initial_role" {
 
     local.workflow_account_roles["workflow_support_role_arn"],
   ]
-}
-
-moved {
-  from = module.data_analyst_roleset
-  to   = module.data_analyst_initial_role
 }
 
 module "data_analyst_initial_role" {
@@ -253,11 +228,6 @@ module "data_analyst_initial_role" {
     local.reporting_account_roles["read_only_role_arn"],
     local.data_account_roles["read_only_role_arn"],
   ]
-}
-
-moved {
-  from = module.data_dev_roleset
-  to   = module.data_dev_initial_role
 }
 
 module "data_dev_initial_role" {
@@ -302,11 +272,6 @@ module "data_dev_initial_role" {
   ]
 }
 
-moved {
-  from = module.digitisation_dev_roleset
-  to   = module.digitisation_dev_initial_role
-}
-
 module "digitisation_dev_initial_role" {
   source = "../../modules/initial_role"
 
@@ -333,11 +298,6 @@ module "digitisation_dev_initial_role" {
     # Scala lib read Role
     aws_iam_role.s3_scala_releases_read.arn,
   ]
-}
-
-moved {
-  from = module.digitisation_admin_roleset
-  to   = module.digitisation_admin_initial_role
 }
 
 module "digitisation_admin_initial_role" {
@@ -367,11 +327,6 @@ module "digitisation_admin_initial_role" {
     # Scala lib read Role
     aws_iam_role.s3_scala_releases_read.arn,
   ]
-}
-
-moved {
-  from = module.digirati_dev_roleset
-  to   = module.digirati_dev_initial_role
 }
 
 module "digirati_dev_initial_role" {

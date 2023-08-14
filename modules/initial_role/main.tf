@@ -36,11 +36,6 @@ data "aws_iam_policy_document" "assume_role_with_saml" {
   }
 }
 
-moved {
-  from = module.role.aws_iam_role.role
-  to   = aws_iam_role.role
-}
-
 resource "aws_iam_role_policy" "allow_assume_roles" {
   role   = aws_iam_role.role.name
   policy = data.aws_iam_policy_document.allow_assume_all_assumable_roles.json
@@ -56,9 +51,4 @@ data "aws_iam_policy_document" "allow_assume_all_assumable_roles" {
 
     resources = var.assumable_roles
   }
-}
-
-moved {
-  from = module.role_policy.aws_iam_role_policy.role_assumer
-  to   = aws_iam_role_policy.allow_assume_roles
 }
