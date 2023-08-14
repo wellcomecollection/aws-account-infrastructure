@@ -3,7 +3,7 @@ locals {
     "Department"                = "Digital Platform"
     "Division"                  = "Wellcome Collection"
     "Environment"               = "Production"
-    "TerraformConfigurationURL" = "https://github.com/wellcomecollection/platform-infrastructure/tree/main/accounts/digitisation"
+    "TerraformConfigurationURL" = "https://github.com/wellcomecollection/aws-account-infrastructure/tree/main/accounts/digitisation"
     "Use"                       = "Digitisation account infrastructure"
   }
 }

@@ -66,11 +66,6 @@ module "super_dev_initial_role" {
     local.catalogue_account_roles["read_only_role_arn"],
     local.catalogue_account_roles["admin_role_arn"],
 
-    # DAM Prototype
-    local.dam_prototype_account_roles["developer_role_arn"],
-    local.dam_prototype_account_roles["read_only_role_arn"],
-    local.dam_prototype_account_roles["admin_role_arn"],
-
     # Microsites account
     local.microsites_account_roles["developer_role_arn"],
     local.microsites_account_roles["read_only_role_arn"],
@@ -94,7 +89,6 @@ module "super_dev_initial_role" {
     local.identity_account_roles["ci_role_arn"],
     local.digitisation_account_roles["ci_role_arn"],
     local.experience_account_roles["ci_role_arn"],
-    local.dam_prototype_account_roles["ci_role_arn"],
 
     aws_iam_role.s3_scala_releases_read.arn,
 

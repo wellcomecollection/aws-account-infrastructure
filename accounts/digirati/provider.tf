@@ -1,8 +1,18 @@
+locals {
+  default_tags = {
+    TerraformConfigurationURL = "https://github.com/wellcomecollection/aws-account-infrastructure/tree/main/accounts/digirati"
+  }
+}
+
 provider "aws" {
   region = "eu-west-1"
 
   assume_role {
     role_arn = "arn:aws:iam::653428163053:role/digirati-admin"
+  }
+
+  default_tags {
+    tags = local.default_tags
   }
 }
 
@@ -12,5 +22,9 @@ provider "aws" {
 
   assume_role {
     role_arn = "arn:aws:iam::760097843905:role/platform-admin"
+  }
+
+  default_tags {
+    tags = local.default_tags
   }
 }
