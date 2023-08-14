@@ -1,2 +1,7 @@
-variable "prefix" {}
-variable "pgp_key" {}
+variable "prefix" {
+  type = string
+}
+
+variable "pgp_key" {
+  type = string
+}
