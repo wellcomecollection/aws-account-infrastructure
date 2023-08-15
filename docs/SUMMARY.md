@@ -10,6 +10,7 @@
 ## Users, IAM roles, accounts, and so on
 
 * [Introduction](users-iam-roles-accounts-and-so-on/how-we-do-iam.md)
+* [What are our AWS accounts?](users-iam-roles-accounts-and-so-on/what-are-our-aws-accounts.md)
 * [What is an initial role?](users-iam-roles-accounts-and-so-on/what-is-an-initial-role.md)
 * [What are our standard roles?](users-iam-roles-accounts-and-so-on/what-are-our-standard-roles.md)
 
