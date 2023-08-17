@@ -86,6 +86,25 @@ Another old account; contents unknown.
 
 The root email address for this account is <s.strategy@wellcome.org>, which is a shared inbox.
 
+## Other AWS accounts
+
+### 267269328833 / Wellcome DNS
+
+This account is owned by Wellcome Trust rather than Wellcome Collection, and it's where all the DNS records are managed.
+We can get access to this account from the platform-superdev initial role by assuming the following role:
+
+```
+arn:aws:iam::267269328833:role/wellcomecollection-assume_role_hosted_zone_update
+```
+
+and then you can see the DNS records in Route 53 for:
+
+*   wellcomecollection.org ([Route 53 console](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z0902614YH73JBCZG1MA))
+*   wellcomeimages.org ([Route 53 console](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3TXBL5I2YRXXX), [our Terraform config](https://github.com/wellcomecollection/wellcomeimages.org/tree/1ea58180a40e79e98940cd78cede5571c547a3d7))
+*   wellcomelibrary.org ([Route 53 console](https://console.aws.amazon.com/route53/v2/hostedzones?#ListRecordSets/Z78J6G8RSOLSZ), [our Terraform config](https://github.com/wellcomecollection/wellcomelibrary.org/tree/69f6e3b669cdc519ae44f4a3e11a93a4d0fb3cc5))*
+
+(You can't find the hosted zone in the Route 53 console because we don't have the ListHostedZones permission – some of them are for domains we don't control.)
+
 ## Closed accounts
 
 For historical reference, these are accounts we used to have but have since closed:
