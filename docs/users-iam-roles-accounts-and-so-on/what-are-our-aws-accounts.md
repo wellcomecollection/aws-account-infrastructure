@@ -84,6 +84,8 @@ An account with some old Wellcome Collection microsites.
 
 Another old account; contents unknown.
 
+The root email address for this account is <s.strategy@wellcome.org>, which is a shared inbox.
+
 ## Closed accounts
 
 For historical reference, these are accounts we used to have but have since closed:
