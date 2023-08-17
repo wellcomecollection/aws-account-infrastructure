@@ -4,6 +4,7 @@
 
 ## How to
 
+* [How to log in to the AWS console](how-to/how-to-log-in-to-the-aws-console.md)
 * [How to get credentials for working locally, e.g. the AWS CLI](how-to/how-to-get-credentials-for-working-locally.md)
 * [How to get credentials for staff who aren't developers](how-to/how-to-create-credentials-for-staff-who-arent-developers.md)
 
