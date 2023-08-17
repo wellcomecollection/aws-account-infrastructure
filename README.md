@@ -5,3 +5,10 @@
 This repo contains the Terraform definitions for all the AWS accounts owned and managed by Wellcome Collection.
 
 This setup is documented at <https://docs.wellcomecollection.org/aws-account-setup/>
+
+## What's in this repo
+
+*   [`accounts`](./accounts) – Terraform configuration for each of our AWS accounts, one folder per account
+*   [`docs`](./docs) – the source files for [the GitBook site](https://docs.wellcomecollection.org/aws-account-setup/)
+*   [`modules`](./modules) – some Terraform modules for the AWS account configuration
+*   [`scripts`](./scripts) – a handful of Python scripts for working with our AWS accounts

@@ -4,6 +4,13 @@ These are scripts to do stuff in AWS.
 
 <dl>
   <dt>
+    <code>create_account_role_config.py</code>
+  </dt>
+  <dd>
+    This creates the config files for the AWS CLI and the Chrome "Fast Role Switcher" extension.
+  </dd>
+
+  <dt>
     <code>describe_iam_access_key.py [ACCESS_KEY_ID]</code>
   </dt>
   <dd>
