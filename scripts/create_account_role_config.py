@@ -36,8 +36,6 @@ def get_iam_role_arns(accounts_dir):
                 if isinstance(op['value'], str) and op['value'].startswith('arn:aws:iam:') and 'role/' in op['value']:
                     yield op['value']
 
-            break
-
 
 def create_cli_credentials(*, accounts_dir, roles):
     """

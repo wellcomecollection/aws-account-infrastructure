@@ -24,3 +24,9 @@
     Enter the account ID and name of the role you want to assume, then click "Switch Role".
 
     <img src="./assume-role-switcher.png" alt="A 'Switch Role' form with three fields: Account, Role, and Display Name. There's also a colour picker and a 'Switch Role' button.">
+
+Some developers use the [AWS Extend Switch Roles extension][ext] in Google Chrome, which adds a list of all our roles to the top right-hand menu.
+We have a [config file] you can use with the extension.
+
+[ext]: https://chrome.google.com/webstore/detail/aws-extend-switch-roles/jpmkfafbacpgapdghgdpembnojdlgkdl
+[config file]: https://github.com/wellcomecollection/aws-account-infrastructure/blob/main/accounts/chrome_extension_config.ini
