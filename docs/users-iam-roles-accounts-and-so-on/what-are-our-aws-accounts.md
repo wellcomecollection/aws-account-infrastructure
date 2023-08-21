@@ -82,7 +82,10 @@ An account with some old Wellcome Collection microsites.
 
 ### 487094370410 / systems_strategy
 
-Another old account; contents unknown.
+Another old account, used for mostly-deprecated services.
+The only thing left in this account is the old Medical Officer of Health (MOH) reports.
+
+There's a [GitHub ticket](https://github.com/wellcomecollection/platform/issues/5669) that's tracking the gradual deletion of resources in this account.
 
 The root email address for this account is <s.strategy@wellcome.org>, which is a shared inbox.
 
