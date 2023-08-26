@@ -157,6 +157,14 @@ if __name__ == "__main__":
 
     account_id = find_account_id(access_key_id=access_key_id)
 
+    # Go from the AWS account ID to:
+    #
+    #   -   a friendly name for this AWS account
+    #   -   an authenticated boto3 Session in this account which has the
+    #       iam:GetAccessKeyLastUsed permission
+    #
+    # If you want to use this script with non-Wellcome AWS accounts,
+    # you'll need to customise this part.
     try:
         account_name = WELLCOME_ACCOUNT_NAMES[account_id]
     except KeyError:
