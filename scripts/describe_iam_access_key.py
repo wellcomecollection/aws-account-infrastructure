@@ -2,7 +2,7 @@
 """
 This is a tool for finding information about an IAM access key:
 
-    $ python3 describe_access_key.py AKIAIOSFODNN7EXAMPLE
+    $ python3 describe_iam_access_key.py AKIAVOSFODNN7EXAMPLE
     access key:       AKIAIOSFODNN7EXAMPLE
     account:          acme_corp (1234567890)
     username:         example_user
@@ -12,12 +12,6 @@ This is a tool for finding information about an IAM access key:
 
     console:          https://us-east-1.console.aws.amazon.com/iamv2/home#/users/details/example_user?section=permissions
     terraform:        https://github.com/wellcomecollection/archivematica-infrastructure/tree/master/terraform/users
-
-
-
-    $ python3 describe_access_key.py not-a-real-key
-    access key:       not-a-real-key
-    account:          <unknown>
 
 == Motivation ==
 
@@ -30,12 +24,22 @@ with the key (and where it's defined, in case we need to change them).
 This script goes through every IAM user in every account until it finds
 a matching access key, then prints some useful information about it.
 
+== How it works ==
+
+1.  Use the sts:GetAccessKeyInfo API to find the AWS account ID.
+2.  Use the iam:GetAccessKeyLastUsed API to find the IAM user name.
+3.  Use a couple of other IAM APIs to get info about the user before
+    pretty-printing it.
+
+See https://alexwlchan.net/2023/iam-keys/
+
 """
 
 import json
 import sys
 
 import boto3
+from botocore.exceptions import ClientError
 import termcolor
 
 from config import WELLCOME_ACCOUNT_NAMES
@@ -55,23 +59,26 @@ def get_aws_session(*, role_arn):
     )
 
 
-def get_iam_access_key_info(sess):
-    iam = sess.client("iam")
+def find_account_id(*, access_key_id):
+    """
+    Given an IAM access key ID, return the account identifier.
 
-    paginator = iam.get_paginator("list_users")
+    See https://docs.aws.amazon.com/STS/latest/APIReference/API_GetAccessKeyInfo.html
+    """
+    sess = get_aws_session(role_arn="arn:aws:iam::760097843905:role/platform-read_only")
+    sts_client = sess.client("sts")
 
-    for page in paginator.paginate():
-        for user in page["Users"]:
-            access_keys = iam.list_access_keys(UserName=user["UserName"])
+    return sts_client.get_access_key_info(AccessKeyId=access_key_id)["Account"]
 
-            for key in access_keys["AccessKeyMetadata"]:
-                yield {
-                    "account_id": account_id,
-                    "account_name": account_name,
-                    "user": user,
-                    "key": key,
-                    "iam_client": iam,
-                }
+
+def get_iam_user_name(sess, *, access_key_id):
+    """
+    Given an IAM access key ID and an authenticated session, return the
+    user_name of the associated IAM user.
+    """
+    iam_client = sess.client("iam")
+
+    return iam_client.get_access_key_last_used(AccessKeyId=access_key_id)["UserName"]
 
 
 def pprint_info(*, key, value, color="blue"):
@@ -85,78 +92,79 @@ if __name__ == "__main__":
     except IndexError:
         sys.exit(f"Usage: {__file__} <ACCESS_KEY_ID>")
 
-    sess = get_aws_session(role_arn="arn:aws:iam::760097843905:role/platform-read_only")
-    account_id = sess.client("sts").get_access_key_info(AccessKeyId=access_key_id)[
-        "Account"
-    ]
+    account_id = find_account_id(access_key_id=access_key_id)
 
     try:
         account_name = WELLCOME_ACCOUNT_NAMES[account_id]
     except KeyError:
         pprint_info(key="access key", value=access_key_id)
         pprint_info(key="account", value=f"{account_id} (unknown)")
+        sys.exit(0)
     else:
-        account_sess = get_aws_session(
+        sess = get_aws_session(
             role_arn=f"arn:aws:iam::{account_id}:role/{account_name}-read_only"
         )
 
-        for info in get_iam_access_key_info(account_sess):
-            if info["key"]["AccessKeyId"] == access_key_id:
-                tag_resp = info["iam_client"].list_user_tags(
-                    UserName=info["user"]["UserName"]
+    user_name = get_iam_user_name(sess, access_key_id=access_key_id)
+
+    iam_client = sess.client("iam")
+
+    # Get some more info about this IAM user and their access key.
+    user_tags = {
+        t["Key"]: t["Value"]
+        for t in iam_client.list_user_tags(UserName=user_name)["Tags"]
+    }
+    user_policy_names = iam_client.list_user_policies(UserName=user_name)
+    user_policies = {
+        policy_name: iam_client.get_user_policy(
+            UserName=user_name, PolicyName=policy_name
+        )
+        for policy_name in user_policy_names["PolicyNames"]
+    }
+    user_access_keys = iam_client.list_access_keys(UserName=user_name)
+    this_access_key_info = next(
+        m
+        for m in user_access_keys["AccessKeyMetadata"]
+        if m["AccessKeyId"] == access_key_id
+    )
+
+    pprint_info(key="access key", value=access_key_id)
+    pprint_info(key="account", value=f"{account_name} ({account_id})")
+    pprint_info(key="user_name", value=user_name)
+    pprint_info(
+        key="key created",
+        value=this_access_key_info["CreateDate"].strftime("%-d %B %Y"),
+    )
+    pprint_info(
+        key="status",
+        value=this_access_key_info["Status"],
+        color="red" if this_access_key_info["Status"] == "Inactive" else "blue",
+    )
+
+    print("")
+
+    policy_document_file = f"{user_name}.iam_permissions.txt"
+    with open(policy_document_file, "w") as outfile:
+        for policy_name, policy_description in user_policies.items():
+            outfile.write(policy_name + "\n")
+            outfile.write(
+                json.dumps(
+                    policy_description["PolicyDocument"],
+                    indent=2,
+                    sort_keys=True,
                 )
-                tags = {t["Key"]: t["Value"] for t in tag_resp["Tags"]}
+                + "\n\n"
+            )
 
-                user_policies = info["iam_client"].list_user_policies(
-                    UserName=info["user"]["UserName"]
-                )
+    pprint_info(key="IAM permissions", value=policy_document_file)
 
-                policies = {
-                    policy_name: info["iam_client"].get_user_policy(
-                        UserName=info["user"]["UserName"], PolicyName=policy_name
-                    )
-                    for policy_name in user_policies["PolicyNames"]
-                }
+    print("")
 
-                pprint_info(key="access key", value=access_key_id)
-                pprint_info(key="account", value=f"{account_name} ({account_id})")
-                pprint_info(key="username", value=info["user"]["UserName"])
-                pprint_info(
-                    key="key created",
-                    value=info["key"]["CreateDate"].strftime("%-d %B %Y"),
-                )
-                pprint_info(
-                    key="status",
-                    value=info["key"]["Status"],
-                    color="red" if info["key"]["Status"] == "Inactive" else "blue",
-                )
-
-                print("")
-
-                policy_document_file = f"{info['user']['UserName']}.iam_permissions.txt"
-                with open(policy_document_file, "w") as outfile:
-                    for policy_name, policy_description in policies.items():
-                        outfile.write(policy_name + "\n")
-                        outfile.write(
-                            json.dumps(
-                                policy_description["PolicyDocument"],
-                                indent=2,
-                                sort_keys=True,
-                            )
-                            + "\n\n"
-                        )
-
-                pprint_info(key="IAM permissions", value=policy_document_file)
-
-                print("")
-
-                pprint_info(
-                    key="console",
-                    value=f"https://us-east-1.console.aws.amazon.com/iamv2/home#/users/details/{info['user']['UserName']}?section=permissions",
-                )
-                pprint_info(
-                    key="terraform",
-                    value=tags.get("TerraformConfigurationURL", "<unknown>"),
-                )
-
-                break
+    pprint_info(
+        key="console",
+        value=f"https://us-east-1.console.aws.amazon.com/iamv2/home#/users/details/{user_name}",
+    )
+    pprint_info(
+        key="terraform",
+        value=user_tags.get("TerraformConfigurationURL", "<unknown>"),
+    )
