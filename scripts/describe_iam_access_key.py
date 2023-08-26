@@ -86,30 +86,12 @@ def pprint_info(*, key, value, color="blue"):
     print(termcolor.colored(value, color))
 
 
-if __name__ == "__main__":
-    try:
-        access_key_id = sys.argv[1]
-    except IndexError:
-        sys.exit(f"Usage: {__file__} <ACCESS_KEY_ID>")
-
-    account_id = find_account_id(access_key_id=access_key_id)
-
-    try:
-        account_name = WELLCOME_ACCOUNT_NAMES[account_id]
-    except KeyError:
-        pprint_info(key="access key", value=access_key_id)
-        pprint_info(key="account", value=f"{account_id} (unknown)")
-        sys.exit(0)
-    else:
-        sess = get_aws_session(
-            role_arn=f"arn:aws:iam::{account_id}:role/{account_name}-read_only"
-        )
-
-    user_name = get_iam_user_name(sess, access_key_id=access_key_id)
-
+def pprint_user_info(sess, *, account_id, account_name, user_name, access_key_id):
+    """
+    Print a bunch of information about this user and their access key.
+    """
     iam_client = sess.client("iam")
 
-    # Get some more info about this IAM user and their access key.
     user_tags = {
         t["Key"]: t["Value"]
         for t in iam_client.list_user_tags(UserName=user_name)["Tags"]
@@ -130,7 +112,7 @@ if __name__ == "__main__":
 
     pprint_info(key="access key", value=access_key_id)
     pprint_info(key="account", value=f"{account_name} ({account_id})")
-    pprint_info(key="user_name", value=user_name)
+    pprint_info(key="username", value=user_name)
     pprint_info(
         key="key created",
         value=this_access_key_info["CreateDate"].strftime("%-d %B %Y"),
@@ -167,4 +149,34 @@ if __name__ == "__main__":
     pprint_info(
         key="terraform",
         value=user_tags.get("TerraformConfigurationURL", "<unknown>"),
+    )
+
+
+if __name__ == "__main__":
+    try:
+        access_key_id = sys.argv[1]
+    except IndexError:
+        sys.exit(f"Usage: {__file__} <ACCESS_KEY_ID>")
+
+    account_id = find_account_id(access_key_id=access_key_id)
+
+    try:
+        account_name = WELLCOME_ACCOUNT_NAMES[account_id]
+    except KeyError:
+        pprint_info(key="access key", value=access_key_id)
+        pprint_info(key="account", value=f"{account_id} (unknown)")
+        sys.exit(0)
+    else:
+        sess = get_aws_session(
+            role_arn=f"arn:aws:iam::{account_id}:role/{account_name}-read_only"
+        )
+
+    user_name = get_iam_user_name(sess, access_key_id=access_key_id)
+
+    pprint_user_info(
+        sess,
+        account_id=account_id,
+        account_name=account_name,
+        user_name=user_name,
+        access_key_id=access_key_id,
     )
