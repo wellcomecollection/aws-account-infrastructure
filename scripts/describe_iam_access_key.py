@@ -33,6 +33,14 @@ a matching access key, then prints some useful information about it.
 
 See https://alexwlchan.net/2023/iam-keys/
 
+== Notes ==
+
+This script only works for long-term credentials created and attached
+to IAM users; it doesn't work for temporary credentials created
+using AWS STS.
+
+See https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
+
 """
 
 import json
