@@ -131,9 +131,7 @@ def pprint_user_info(sess, *, account_id, account_name, user_name, access_key_id
             outfile.write(policy_name + "\n")
             outfile.write(
                 json.dumps(
-                    policy_description["PolicyDocument"],
-                    indent=2,
-                    sort_keys=True,
+                    policy_description["PolicyDocument"], indent=2, sort_keys=True
                 )
                 + "\n\n"
             )
@@ -147,8 +145,7 @@ def pprint_user_info(sess, *, account_id, account_name, user_name, access_key_id
         value=f"https://us-east-1.console.aws.amazon.com/iamv2/home#/users/details/{user_name}",
     )
     pprint_info(
-        key="terraform",
-        value=user_tags.get("TerraformConfigurationURL", "<unknown>"),
+        key="terraform", value=user_tags.get("TerraformConfigurationURL", "<unknown>")
     )
 
 
