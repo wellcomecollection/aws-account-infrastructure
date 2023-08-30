@@ -46,25 +46,10 @@ See https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.
 import json
 import sys
 
-import boto3
 from botocore.exceptions import ClientError
 import termcolor
 
-from config import WELLCOME_ACCOUNT_NAMES
-
-
-def get_aws_session(*, role_arn):
-    sts_client = boto3.client("sts")
-    assumed_role_object = sts_client.assume_role(
-        RoleArn=role_arn, RoleSessionName="AssumeRoleSession1"
-    )
-    credentials = assumed_role_object["Credentials"]
-
-    return boto3.Session(
-        aws_access_key_id=credentials["AccessKeyId"],
-        aws_secret_access_key=credentials["SecretAccessKey"],
-        aws_session_token=credentials["SessionToken"],
-    )
+from config import WELLCOME_ACCOUNT_NAMES, get_aws_session
 
 
 def find_account_id(*, access_key_id):
