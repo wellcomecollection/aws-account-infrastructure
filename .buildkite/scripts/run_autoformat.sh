@@ -14,7 +14,9 @@ docker run --tty --rm \
 # Run the Python autoformatting
 docker run --tty --rm \
   --volume "$ROOT":/repo \
-  760097843905.dkr.ecr.eu-west-1.amazonaws.com/wellcome/format_python:112
+  --workdir /repo \
+  760097843905.dkr.ecr.eu-west-1.amazonaws.com/pyfound/black \
+  black --exclude ".lambda_zips/|.terraform/|target/" .
 
 # If there are any changes, push to GitHub immediately and fail the
 # build.  This will abort the remaining jobs, and trigger a new build
@@ -33,10 +35,10 @@ else
 
   git config user.name "Buildkite on behalf of Wellcome Collection"
   git config user.email wellcomedigitalplatform@wellcome.ac.uk
-  git remote add ssh-origin "$BUILDKITE_REPO" || echo "(remote repo already configured)"
+  git remote add ssh-origin "$BUILDKITE_REPO"
 
   git fetch ssh-origin
-  git checkout --track "ssh-origin/$BUILDKITE_BRANCH" || echo "(branch already checked out)"
+  git checkout --track "ssh-origin/$BUILDKITE_BRANCH"
 
   git add --verbose --update
   git commit -m "Apply auto-formatting rules"
@@ -55,10 +57,3 @@ docker run --tty --rm \
   --workdir /repo \
   760097843905.dkr.ecr.eu-west-1.amazonaws.com/wellcome/flake8:latest \
   --exclude .git,__pycache__,target,.terraform --ignore=E501,E122,E126,E203,W503
-
-docker run --rm --tty \
-  --volume $(pwd):/data \
-  ghcr.io/terraform-linters/tflint \
-    --recursive \
-    --disable-rule=terraform_required_version \
-    --disable-rule=terraform_required_providers
