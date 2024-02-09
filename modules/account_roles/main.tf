@@ -66,7 +66,7 @@ module "ci_role_policy" {
 }
 
 module "image_builder" {
-  source = "./image-builder"
+  source            = "./image-builder"
   target_account_id = var.ami_distribution_account_id
 }
 

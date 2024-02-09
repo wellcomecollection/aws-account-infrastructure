@@ -9,7 +9,7 @@ resource "aws_iam_role" "EC2ImageBuilderDistributionCrossAccountRole" {
       {
         Action = "sts:AssumeRole",
         Effect = "Allow",
-        Sid = "",
+        Sid    = "",
         Principal = {
           AWS = var.target_account_id
         }
@@ -19,7 +19,7 @@ resource "aws_iam_role" "EC2ImageBuilderDistributionCrossAccountRole" {
 }
 
 resource "aws_iam_policy_attachment" "EC2ImageBuilderDistributionCrossAccountRoleAttachment" {
-  name = "EC2ImageBuilderDistributionCrossAccountRoleAttachment"
-  roles = [aws_iam_role.EC2ImageBuilderDistributionCrossAccountRole.name]
+  name       = "EC2ImageBuilderDistributionCrossAccountRoleAttachment"
+  roles      = [aws_iam_role.EC2ImageBuilderDistributionCrossAccountRole.name]
   policy_arn = "arn:aws:iam::aws:policy/EC2ImageBuilderCrossAccountDistributionAccess"
 }
