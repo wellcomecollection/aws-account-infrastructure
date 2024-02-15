@@ -65,6 +65,10 @@ module "ci_role_policy" {
   sbt_releases_bucket_arn = var.sbt_releases_bucket_arn
 }
 
+module "image_builder" {
+  source            = "./image-builder"
+  target_account_id = var.ami_distribution_account_id
+}
 
 # This defines a couple of standard roles in our account which are
 # used by the InfoSec team in D&T.
