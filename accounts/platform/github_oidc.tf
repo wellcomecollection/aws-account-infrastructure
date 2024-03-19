@@ -18,8 +18,8 @@ locals {
 
 // The repositories that are allowed to assume the github_actions_assume_role
 variable "github_repositories" {
-    type    = list(string)
-    default = [
+  type = list(string)
+  default = [
     "wellcomecollection/catalogue-api",
   ]
 }
@@ -33,9 +33,9 @@ resource "aws_iam_openid_connect_provider" "github" {
   ]
 
   thumbprint_list = concat(
-      local.github_oidc_thumbprints,
-      [data.tls_certificate.github.certificates[0].sha1_fingerprint],
-    )
+    local.github_oidc_thumbprints,
+    [data.tls_certificate.github.certificates[0].sha1_fingerprint],
+  )
 
   url = "https://token.actions.githubusercontent.com"
 }
