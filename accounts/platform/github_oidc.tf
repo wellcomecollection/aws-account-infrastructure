@@ -21,6 +21,8 @@ variable "github_repositories" {
   type = list(string)
   default = [
     "wellcomecollection/catalogue-api",
+    "wellcomecollection/catalogue-pipeline",
+    "wellcomecollection/storage-service",
   ]
 }
 
