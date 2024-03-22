@@ -78,6 +78,11 @@ resource "aws_iam_role" "github_actions" {
   depends_on = [aws_iam_openid_connect_provider.github]
 }
 
+resource "aws_iam_role_policy" "github_actions_assume_role_policy" {
+  policy = data.aws_iam_policy_document.github_actions_assume_role_policy.json
+  role   = aws_iam_role.github_actions.name
+}
+
 // We allow the GitHub Actions role to assume the appropriate role to perform build actions
 data "aws_iam_policy_document" "github_actions_assume_role_policy" {
   statement {
