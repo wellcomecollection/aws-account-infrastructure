@@ -23,6 +23,7 @@ variable "github_repositories" {
     "wellcomecollection/catalogue-api",
     "wellcomecollection/catalogue-pipeline",
     "wellcomecollection/storage-service",
+    "wellcomecollection/concepts-pipeline",
   ]
 }
 
