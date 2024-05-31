@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "experience_ci" {
       "arn:aws:secretsmanager:${local.aws_region}:${local.account_id}:secret:builds/*",
     ]
   }
-  
+
   statement {
     sid = "GetWebAppSecrets"
 
