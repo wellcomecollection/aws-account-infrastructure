@@ -1,5 +1,5 @@
 module "s3_scala_releases_read_assume_role" {
-  source = "../../modules/github_repo_role"
+  source          = "../../modules/github_repo_role"
   policy_document = data.aws_iam_policy_document.github_actions_assume_role_policy.json
   github_repositories = [
     "wellcomecollection/catalogue-api",
@@ -7,7 +7,7 @@ module "s3_scala_releases_read_assume_role" {
     "wellcomecollection/storage-service",
     "wellcomecollection/concepts-pipeline",
   ]
-  role_name = "s3_scala_releases_read"
+  role_name                = "s3_scala_releases_read"
   github_oidc_provider_arn = module.aws_account.openid_connect_provider_arn
 }
 

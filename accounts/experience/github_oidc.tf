@@ -1,10 +1,10 @@
 module "s3_dash_write_assume_role" {
-  source = "../../modules/github_repo_role"
+  source          = "../../modules/github_repo_role"
   policy_document = data.aws_iam_policy_document.github_actions_assume_role_policy.json
   github_repositories = [
     "wellcomecollection/wellcomecollection.org",
   ]
-  role_name = "s3_dash_write"
+  role_name                = "s3_dash_write"
   github_oidc_provider_arn = module.experience_account.openid_connect_provider_arn
 }
 
