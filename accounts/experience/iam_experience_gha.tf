@@ -31,6 +31,6 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
   }
 }
 
-output "github_actions_assume_role_arn" {
-  value = module.s3_dash_write_assume_role.role_arn
+output "experience_gha_role_arn" {
+  value = module.experience_gha.role_arn
 }
