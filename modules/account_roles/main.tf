@@ -92,3 +92,8 @@ module "qualys" {
 module "threataware" {
   source = "./threataware"
 }
+
+# This is the GitHub OIDC identity provider.
+module "github_oidc" {
+  source = "./github-oidc"
+}
