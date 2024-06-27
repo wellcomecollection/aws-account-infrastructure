@@ -37,6 +37,14 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
 
     resources = ["*"]
   }
+
+  statement {
+    actions = [
+      "sts:GetServiceBearerToken"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 output "experience_gha_role_arn" {
