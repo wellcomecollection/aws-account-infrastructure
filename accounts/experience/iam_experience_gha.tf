@@ -29,6 +29,14 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
       "arn:aws:cloudfront::${local.account_id}:distribution/EIOS79GG23UUY",
     ]
   }
+
+  statement {
+    actions = [
+      "ecr-public:GetAuthorizationToken"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 output "experience_gha_role_arn" {
