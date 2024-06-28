@@ -1,59 +1,40 @@
 # How to get credentials for working locally, e.g. the AWS CLI
 
 Developers can get short-lived credentials for working locally (lasting up to 4 hours).
+
 This is meant to reduce the risk profile of lost secrets; e.g. if a laptop is stolen, it's less likely to have useful AWS credentials than if we all had long-lived, permanent credentials.
 
-You need to intercept credentials from the SAML sign-in process.
+You can use the `aws` CLI application to do this when signing in via IAM Identity Center.
 
-1.  Install the Node app [sportradar/aws-azure-login](https://github.com/sportradar/aws-azure-login):
+To configure your CLI for single sign on you can:
 
-    ```console
-    $ npm install -g aws-azure-login
-    ```
+1.  Follow the instructions to [log into the AWS console](./how-to-log-in-to-the-aws-console.md) to ensure you have access.
+   
+2.  Return to the IAM Identity Center app, or [visit this link](https://wellcome.awsapps.com/start/#/?tab=accounts).
+   
+3.  Select the "Access Keys" option for the "Digital Engagement Platform" account.
 
-2.  Configure the app:
+    <img src="./aws-identity-center.png" alt="Screenshot of the IAM Identity Center page, the Digital Engagement platform account is visible">
 
-    ```console
-    $ aws-azure-login --configure
-    Configuring profile 'default'
-    ? Azure Tenant ID: [redacted]
-    ? Azure App ID URI: [redacted]
-    ? Default Username: [c_cloud email address]
-    ? Stay logged in: skip authentication while refreshing aws credentials (true|false) false
-    ? Default Role ARN (if multiple):
-    ? Default Session Duration Hours (up to 12): 4
-    Profile saved.
-    ```
+4. You should see instructions for multiple ways in which to use your temporary credentials. 
+   To set up your CLI to work with collection AWS roles, run:
+   
+   ```console
+   aws configure sso
+   ```
 
-    Alternatively, add the following config to your `~/.aws/config` file:
+   Specify the start URL and region from the instructions. **When asked to select a profile name specify `default`**.
 
-    ```ini
-    [default]
-    region=eu-west-1
-    azure_tenant_id=[redacted]
-    azure_app_id_uri=[redacted]
-    azure_default_username=[c_cloud email address]
-    azure_default_role_arn=
-    azure_default_duration_hours=4
-    azure_default_remember_me=false
-    ```
+5. Ensure that your `./aws/credentials` file matches the one [credentials file] in this repository. **If there is already a `default` profile specified this process will fail.**
 
-    You can get the Azure tenant/app ID by asking another developer, or reading our [private docs](https://github.com/wellcomecollection/private-docs/blob/main/account-config.md).
+6. Once the configuration process is complete you can sign-in using the command:
+   
+   ```console
+   aws sso login
+   ```
 
-    Use your `c_` cloud email address as your Azure username, e.g. `c_chana@wellcome.ac.uk`.
+   After sign-in, you will assume an [initial role](https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-is-an-initial-role).
+   
+   You then need to assume a [specific role](https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-are-our-standard-roles) to start doing things.
 
-3.  Once you have the app installed, run `aws-azure-login` and follow the prompts to get a new set of credentials, e.g.
-
-    ```console
-    $ aws-azure-login
-    Logging in with profile 'default'...
-    Using AWS SAML endpoint https://signin.aws.amazon.com/saml
-    ? Username: c_chana@wellcome.ac.uk
-    ? Password: [hidden]
-    Open your Microsoft Authenticator app and approve the request to sign in.
-    ? Session Duration Hours (up to 12): 4
-    Assuming role arn:aws:iam::760097843905:role/platform-superdev
-    ```
-
-    If this succeeds, you will assume an [initial role](https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-is-an-initial-role).
-    You then need to assume a [specific role](https://docs.wellcomecollection.org/aws-account-setup/users-iam-roles-accounts-and-so-on/what-are-our-standard-roles) to start doing things.
+[credentials file]: https://github.com/wellcomecollection/aws-account-infrastructure/blob/main/accounts/credentials.ini
