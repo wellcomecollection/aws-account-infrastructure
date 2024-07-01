@@ -44,6 +44,18 @@ data "aws_iam_policy_document" "experience_ci" {
   }
 
   statement {
+    sid = "GetPrismicSecrets"
+
+    actions = [
+      "secretsmanager:GetSecretValue",
+    ]
+
+    resources = [
+      "arn:aws:secretsmanager:${local.aws_region}:${local.account_id}:secret:prismic-model/*",
+    ]
+  }
+
+  statement {
     sid = "GetBuildSecrets"
 
     actions = [
