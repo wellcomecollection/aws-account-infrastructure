@@ -41,6 +41,11 @@ resource "aws_iam_role_policy" "allow_assume_roles" {
   policy = data.aws_iam_policy_document.allow_assume_all_assumable_roles.json
 }
 
+resource "aws_iam_policy" "policy" {
+  name        = var.name
+  policy = data.aws_iam_policy_document.allow_assume_all_assumable_roles.json
+}
+
 data "aws_iam_policy_document" "allow_assume_all_assumable_roles" {
   statement {
     effect = "Allow"
