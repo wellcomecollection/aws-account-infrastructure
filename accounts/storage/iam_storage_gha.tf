@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
   # Allows uploading new objects into the Ingest Inspector frontend S3 bucket
   statement {
     actions = [
-      "s3:PutObject*",
+      "s3:PutObject",
     ]
     resources = [
       "arn:aws:s3:::wellcomecollection-ingest-inspector-frontend",
@@ -24,8 +24,8 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
   # Allows reading and writing Lambda function code in S3
   statement {
     actions = [
-      "s3:PutObject*",
-      "s3:GetObject*"
+      "s3:PutObject",
+      "s3:GetObject"
     ]
     resources = [
       "arn:aws:s3:::wellcomecollection-storage-infra/lambdas/*",
