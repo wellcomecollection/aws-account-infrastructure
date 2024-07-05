@@ -20,10 +20,21 @@ To configure your CLI for single sign on you can:
    To set up your CLI to work with collection AWS roles, run:
    
    ```console
-   aws configure sso
+   > aws configure sso
+   SSO session name (Recommended):
+   WARNING: Configuring using legacy format (e.g. without an SSO session).
+   Consider re-running "configure sso" command and providing a session name.
+   SSO start URL [https://wellcome.awsapps.com/start/#]:
+   SSO region [eu-west-1]:
+   There are 2 AWS accounts available to you.
+   Using the account ID 760097843905
+   The only role available to you is: platform-superdev
+   Using the role name "platform-superdev"
+   CLI default client Region [eu-west-1]:
+   CLI default output format [None]:
    ```
 
-   Specify the start URL and region from the instructions. **When asked to select a profile name specify `default`**.
+   The SSO session name should can be empty. Specify the start URL and region from the instructions. **When asked to select a profile name specify `default`**.
 
 5. Ensure that your `./aws/credentials` file matches the one [credentials file] in this repository. **If there is already a `default` profile specified this process will fail.**
 
