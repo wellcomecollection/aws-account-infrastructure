@@ -124,7 +124,7 @@ data "aws_iam_policy_document" "editorial_photography_bucket_policy" {
         "arn:aws:iam::404315009621:role/service-role/editorial-photography-transfer-role-staging",
         "arn:aws:iam::404315009621:role/service-role/editorial-photography-transfer-role-production"
       ]
-      type        = "AWS"
+      type = "AWS"
     }
     resources = [
       "${aws_s3_bucket.editorial_photography.arn}/*",
