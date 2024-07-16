@@ -115,14 +115,13 @@ data "aws_iam_policy_document" "editorial_photography_bucket_policy" {
   statement {
     actions = [
       "s3:ListBucket",
-      "s3:ListObjects",
       "s3:GetObject",
     ]
 
     principals {
       identifiers = [
-        "arn:aws:iam::404315009621:role/service-role/editorial-photography-transfer-role-staging",
-        "arn:aws:iam::404315009621:role/service-role/editorial-photography-transfer-role-production"
+        "arn:aws:iam::404315009621:role/lambda-role-editorial-photography-transfer-staging",
+        "arn:aws:iam::404315009621:role/lambda-role-editorial-photography-transfer-production"
       ]
       type = "AWS"
     }
