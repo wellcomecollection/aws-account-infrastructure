@@ -39,7 +39,8 @@ data "aws_iam_policy_document" "github_actions_assume_role_policy" {
       "lambda:UpdateFunctionCode"
     ]
     resources = [
-      "arn:aws:lambda:eu-west-1:975596993436:function:ingest_inspector_backend"
+      "arn:aws:lambda:eu-west-1:975596993436:function:ingest_inspector_backend",
+      "arn:aws:lambda:eu-west-1:975596993436:function:daily_reporter"
     ]
   }
 }
