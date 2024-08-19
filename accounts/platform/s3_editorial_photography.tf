@@ -111,4 +111,24 @@ data "aws_iam_policy_document" "editorial_photography_bucket_policy" {
       aws_s3_bucket.editorial_photography.arn,
     ]
   }
+
+  statement {
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+    ]
+
+    principals {
+      identifiers = [
+        "arn:aws:iam::404315009621:role/lambda-role-editorial-photography-transfer-staging",
+        "arn:aws:iam::404315009621:role/lambda-role-editorial-photography-transfer-production"
+      ]
+      type = "AWS"
+    }
+    resources = [
+      "${aws_s3_bucket.editorial_photography.arn}/*",
+      aws_s3_bucket.editorial_photography.arn,
+    ]
+  }
 }
+
