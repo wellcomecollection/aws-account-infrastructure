@@ -52,7 +52,7 @@ data "aws_iam_policy_document" "platform_ecr_read" {
     ]
 
     resources = [
-      "760097843905.dkr.ecr.eu-west-1.amazonaws.com/*",
+      "760097843905.dkr.ecr.eu-west-1.amazonaws.com/wellcome/sbt_wrapper",
     ]
   }
 }
