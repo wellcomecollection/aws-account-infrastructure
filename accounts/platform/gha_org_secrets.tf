@@ -1,5 +1,6 @@
-// creates a gha secret at the org level, that workflows can access to assume specific IAM roles 
+// creates a gha secret at the org level
 
+// secret value for role-to-assume in workflows that need to pull from ecr
 resource "github_actions_organization_secret" "gha_platform_ecr_read_role_arn" {
   secret_name     = "GHA_PLATFORM_ECR_READ_ROLE_ARN"
   visibility      = "private"
