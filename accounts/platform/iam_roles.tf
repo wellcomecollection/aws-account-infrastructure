@@ -48,11 +48,20 @@ data "aws_iam_policy_document" "platform_ecr_read" {
   statement {
     actions = [
       "ecr:BatchGetImage",
-      "ecr:GetDownloadUrlForLayer"
+      "ecr:GetDownloadUrlForLayer",
     ]
 
     resources = [
-      "760097843905.dkr.ecr.eu-west-1.amazonaws.com/wellcome/sbt_wrapper",
+      "arn:aws:ecr:eu-west-1:760097843905:repository/wellcome/sbt_wrapper",
+    ]
+  }
+  statement {
+    actions = [
+      "ecr:GetAuthorizationToken"
+    ]
+
+    resources = [
+      "*"
     ]
   }
 }

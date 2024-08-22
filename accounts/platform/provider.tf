@@ -15,3 +15,15 @@ provider "aws" {
     tags = local.default_tags
   }
 }
+
+# Configure the GitHub Provider
+# Create a fine-grained personal access token in Github and 
+# export TF_VAR_github_token=<your-token-here> before applying the tf
+provider "github" {
+  owner = "wellcomecollection" 
+  token = "${var.github_token}"
+}
+
+variable "github_token" {
+  type = string
+}

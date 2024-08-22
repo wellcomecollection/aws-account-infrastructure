@@ -1,3 +1,11 @@
+// this is required here in the child module to ensure correct resolution 
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+    }
+  }
+}
 // creates a gha secret at the org level
 
 // secret value for role-to-assume in workflows that need to pull from ecr
