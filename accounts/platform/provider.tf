@@ -23,8 +23,8 @@ provider "aws" {
 # In Organization permissions select Secret - Manage Actions organization secrets: read and write
 # export TF_VAR_github_token=<your-token-here> before applying the tf
 provider "github" {
-  owner = "wellcomecollection" 
-  token = "${var.github_token}"
+  owner = "wellcomecollection"
+  token = var.github_token
 }
 
 variable "github_token" {

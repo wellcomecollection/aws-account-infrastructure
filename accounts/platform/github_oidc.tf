@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "gha_scala_formatting" {
     ]
   }
   statement {
-    actions = [ 
+    actions = [
       "sts:AssumeRole"
     ]
 
