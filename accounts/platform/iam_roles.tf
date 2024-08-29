@@ -1,9 +1,3 @@
-# Developer S3 Scala library access
-
-resource "aws_iam_role" "s3_scala_releases_read" {
-  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
-}
-
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -13,6 +7,12 @@ data "aws_iam_policy_document" "assume_role_policy" {
       type        = "AWS"
     }
   }
+}
+
+# Developer S3 Scala library access
+
+resource "aws_iam_role" "s3_scala_releases_read" {
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
 
 resource "aws_iam_role_policy" "s3_scala_releases_read" {
@@ -32,3 +32,4 @@ data "aws_iam_policy_document" "s3_scala_releases_read" {
     ]
   }
 }
+
