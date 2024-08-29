@@ -25,26 +25,48 @@ output "github_actions_assume_role_arn" {
   value = module.s3_scala_releases_read_assume_role.role_arn
 }
 
-module "platform_ecr_read_assume_role" {
+module "gha_scala_formatting_role" {
   source          = "../../modules/github_repo_role"
-  policy_document = data.aws_iam_policy_document.platform_ecr_read_assume_role_policy.json
+  policy_document = data.aws_iam_policy_document.gha_scala_formatting.json
   github_repositories = [
     "wellcomecollection/catalogue-api",
   ]
-  role_name                = "platform_ecr_read"
+  role_name                = "scala_formatting"
   github_oidc_provider_arn = module.aws_account.openid_connect_provider_arn
 }
 
-// We allow the GitHub Actions role to assume the appropriate role 
-data "aws_iam_policy_document" "platform_ecr_read_assume_role_policy" {
+data "aws_iam_policy_document" "gha_scala_formatting" {
   statement {
-    actions = ["sts:AssumeRole"]
+    actions = [
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer",
+    ]
+
     resources = [
-      aws_iam_role.platform_ecr_read.arn
+      "arn:aws:ecr:eu-west-1:760097843905:repository/wellcome/sbt_wrapper",
+      "arn:aws:ecr:eu-west-1:760097843905:repository/pyfound/black"
+    ]
+  }
+  statement {
+    actions = [
+      "ecr:GetAuthorizationToken"
+    ]
+
+    resources = [
+      "*"
+    ]
+  }
+  statement {
+    actions = [ 
+      "sts:AssumeRole"
+    ]
+
+    resources = [
+      "arn:aws:iam::760097843905:role/terraform-20210811133135108800000001"
     ]
   }
 }
 
-output "platform_ecr_read_assume_role_arn" {
-  value = module.platform_ecr_read_assume_role.role_arn
+output "gha_scala_formatting_role_arn" {
+  value = module.gha_scala_formatting_role.role_arn
 }
