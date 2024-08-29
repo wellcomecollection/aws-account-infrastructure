@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "gha_scala_formatting" {
     ]
 
     resources = [
-      "arn:aws:iam::760097843905:role/terraform-20210811133135108800000001"
+      aws_iam_role.s3_scala_releases_read.arn
     ]
   }
 }
