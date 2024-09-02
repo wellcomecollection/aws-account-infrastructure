@@ -27,8 +27,8 @@ data "github_repository" "scala-libs" {
 
 // secret value for role arn allowing access to formatting resources, eg. images, S3
 resource "github_actions_organization_secret" "gha_scala_formatting_role_arn" {
-  secret_name             = "GHA_SCALA_FORMATTING_ROLE_ARN"
-  visibility              = "selected"
+  secret_name = "GHA_SCALA_FORMATTING_ROLE_ARN"
+  visibility  = "selected"
   selected_repository_ids = [
     data.github_repository.catalogue-api.repo_id,
     data.github_repository.catalogue-pipeline.repo_id,
@@ -36,5 +36,5 @@ resource "github_actions_organization_secret" "gha_scala_formatting_role_arn" {
     data.github_repository.storage-service.repo_id,
     data.github_repository.scala-libs.repo_id
   ]
-  plaintext_value         = module.gha_scala_formatting_role.role_arn
+  plaintext_value = module.gha_scala_formatting_role.role_arn
 }
