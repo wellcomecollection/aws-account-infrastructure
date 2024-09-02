@@ -25,7 +25,7 @@ data "github_repository" "scala-libs" {
 
 // creates a gha secret at the org level
 
-// secret value for role-to-assume in workflows that need to pull from ecr
+// secret value for role arn allowing access to formatting resources, eg. images, S3
 resource "github_actions_organization_secret" "gha_scala_formatting_role_arn" {
   secret_name             = "GHA_SCALA_FORMATTING_ROLE_ARN"
   visibility              = "selected"
