@@ -30,6 +30,10 @@ module "gha_scala_formatting_role" {
   policy_document = data.aws_iam_policy_document.gha_scala_formatting.json
   github_repositories = [
     "wellcomecollection/catalogue-api",
+    "wellcomecollection/catalogue-pipeline",
+    "wellcomecollection/concepts-pipeline",
+    "wellcomecollection/storage-service",
+    "wellcomecollection/scala-libs",
   ]
   role_name                = "scala_formatting"
   github_oidc_provider_arn = module.aws_account.openid_connect_provider_arn
