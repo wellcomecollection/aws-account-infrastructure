@@ -86,7 +86,7 @@ module "gha_vhs_miro_ddb_read_role" {
 }
 
 data "aws_iam_policy_document" "gha_vhs_miro_ddb_read" {
-    statement {
+  statement {
     actions = [
       "dynamodb:GetItem",
       "dynamodb:BatchGetItem",
