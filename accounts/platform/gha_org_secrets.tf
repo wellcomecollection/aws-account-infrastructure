@@ -22,6 +22,9 @@ data "github_repository" "storage-service" {
 data "github_repository" "scala-libs" {
   full_name = "wellcomecollection/scala-libs"
 }
+data "github_repository" "private" {
+  full_name = "wellcomecollection/private"
+}
 
 // creates a gha secret at the org level
 
@@ -37,4 +40,14 @@ resource "github_actions_organization_secret" "gha_scala_formatting_role_arn" {
     data.github_repository.scala-libs.repo_id
   ]
   plaintext_value = module.gha_scala_formatting_role.role_arn
+}
+
+// secret value for role arn allowing read access to vhs-sourcedata-miro DDB table
+resource "github_actions_organization_secret" "gha_vhs_miro_ddb_read_role_arn" {
+  secret_name = "GHA_VHS_MIRO_DDB_READ_ROLE_ARN"
+  visibility  = "selected"
+  selected_repository_ids = [
+    data.github_repository.private.repo_id,
+  ]
+  plaintext_value = module.gha_vhs_miro_ddb_read_role.role_arn
 }
