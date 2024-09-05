@@ -74,3 +74,33 @@ data "aws_iam_policy_document" "gha_scala_formatting" {
 output "gha_scala_formatting_role_arn" {
   value = module.gha_scala_formatting_role.role_arn
 }
+
+module "gha_vhs_miro_ddb_read_role" {
+  source          = "../../modules/github_repo_role"
+  policy_document = data.aws_iam_policy_document.gha_vhs_miro_ddb_read.json
+  github_repositories = [
+    "wellcomecollection/private"
+  ]
+  role_name                = "vhs_miro_ddb_read"
+  github_oidc_provider_arn = module.aws_account.openid_connect_provider_arn
+}
+
+data "aws_iam_policy_document" "gha_vhs_miro_ddb_read" {
+    statement {
+    actions = [
+      "dynamodb:GetItem",
+      "dynamodb:BatchGetItem",
+      "dynamodb:Scan",
+      "dynamodb:Query",
+      "dynamodb:ConditionCheckItem"
+    ]
+
+    resources = [
+      "arn:aws:dynamodb:eu-west-1:760097843905:table/vhs-sourcedata-miro"
+    ]
+  }
+}
+
+output "gha_vhs_miro_ddb_read_role_arn" {
+  value = module.gha_vhs_miro_ddb_read_role.role_arn
+}
